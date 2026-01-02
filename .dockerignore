@@ -1,0 +1,10 @@
+# Git
+.git
+weaving/.git
+
+# Build artifacts
+**/*.log
+**/*.tmp
+
+# CI metadata
+.gitignore
