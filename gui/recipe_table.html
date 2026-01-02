@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KWIS 1200 - Robro Systems</title>
+  <link rel="stylesheet" href="assets/dataTables/jquery.dataTables.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="assets/rangeslider/ui-range.min.css" />
+
+  <link rel="stylesheet" href="assets/dataTables/dataTables.dateTime.min.css" />
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="assets/css/screen_size.css" />
+  <link rel="stylesheet" href="assets/notification/awesome_notification.css" />
+</head>
+
+<body id="page-top" style="background: rgb(237, 219, 219);cursor: default;">
+  <div id="wrapper">
+    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 toggled"
+      style="background: #1c4e9b; font-family: Roboto, sans-serif">
+      <div class="container-fluid d-flex flex-column p-0">
+        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+          <div class="sidebar-brand-icon mt-2">
+            <img src="assets/img/logo_abbri.png" />
+          </div>
+          <div class="sidebar-brand-text">
+            <img src="assets/img/logo.png" />
+          </div>
+        </a>
+        <ul id="accordionSidebar" class="navbar-nav text-light">
+          <li class="nav-item">
+            <div class="accordion" role="tablist" id="accordion-1" style="margin: 100px 0px; border-style: none">
+              <div id="parameter_item" class="accordion-item" style="background: #1c4e9b; border-style: none">
+                <h2 class="accordion-header" role="tab">
+                  <button class="accordion-button collapsed d-inline" data-bs-toggle="collapse"
+                    data-bs-target="#accordion-1 .item-1" aria-expanded="false" aria-controls="accordion-1 .item-1"
+                    style="padding: 0px; background: #1c4e9b">
+                    <a id="parameter_navbar"
+                      class="navbar-brand d-flex justify-content-center align-items-center justify-content-xxl-start sidebar-brand m-0"
+                      href="/" style="
+                          background: transparent;
+                          border-style: none;
+                          border-bottom-width: 1px;
+                          border-bottom-style: solid;
+                        ">
+                      <i class="fas fa-search-plus" style="font-size: 1.3rem"></i>
+                      <div class="sidebar-brand-text mx-3">
+                        <span class="text-capitalize" style="
+                              font-size: 18px;
+                              font-family: Roboto, sans-serif;
+                            ">Inspection</span>
+                      </div>
+                    </a>
+                  </button>
+                </h2>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="text-center d-none d-md-inline">
+          <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="d-flex flex-column" id="content-wrapper">
+      <div id="content" style="background: #e4e4e4">
+        <nav class="navbar navbar-light navbar-expand bg-white shadow-none mb-4 topbar static-top"
+          style="background: linear-gradient(#e4e4e4, #e4e4e4), #e4e4e4">
+          <div class="container-fluid">
+            <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button">
+              <i class="fas fa-bars"></i>
+            </button>
+            <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
+              <div style="text-align: left;">
+                <h1 style="
+                  font-size: 24px;
+                  font-family: Roboto, sans-serif;
+                  text-align: left;
+                  color: #707070;
+                  font-weight: bold;
+                  margin: 0;
+                  padding: 0;
+                ">
+                  KWIS-1200 v<span id="version">0.0.0</span>
+                </h1>
+                <div id="build_version" style="
+                  font-size: 12px;
+                  font-family: Roboto, sans-serif;
+                  color: #606060;
+                  font-weight: normal;
+                  margin: 0;
+                  padding: 0;
+                ">
+                  0.0.0
+                </div>
+              </div>
+            </form>
+            <div class="d-inline-flex align-items-xxl-center">
+              <h1 id="current_time" style="
+                    margin: 0px 10px;
+                    font-size: 24px;
+                    color: #707070;
+                    font-weight: bold;
+                  "></h1>
+              <div class="mx-2" id="refreshButton">
+                <i class="fas fa-sync-alt fa-2x" style="color: #1c4e9b"></i>
+              </div>
+              <div class="mx-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <i class="fas fa-power-off fa-2x" style="color: #1c4e9b"></i>
+              </div>
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">
+                        Shutdown
+                      </h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">Do you really want to exit?</div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        No
+                      </button>
+                      <button type="button" id="shutdown" class="btn btn-primary">
+                        Yes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div class="card" style="box-shadow: 0px 3px 6px 3px #00000029">
+          <div class="card-body">
+            <div style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                ">
+              <h2 class="recipe-title">Recipe Management</h2>
+              <div style="
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                  ">
+                <button id="createRecipeBtn" style="
+                      border-radius: 5%;
+                      background-color: #1c4e9b;
+                      font-weight: bolder;
+                      color: white;
+                      border: none;
+                      padding: 20px;
+                    ">
+                  Create Recipe
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table id="recipeTable" class="table">
+                <thead>
+                  <tr id="tableHeader">
+                    <th class="recipe-name">Recipe Name</th>
+                    <th class="exposure-time">Exposure Time</th>
+                    <th class="nms-threshold">NMS Threshold</th>
+                    <!-- <th class="threshold">Threshold</th> -->
+                    <th style="text-align: center" width="35%">Group Info</th>
+                    <th class="neural-network">Neural Network</th>
+                    <th style="text-align: center" class="action">Action</th>
+                  </tr>
+                </thead>
+                <tbody style="font-size: 16px; color: black">
+                  <!-- DataTable content will be generated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="createRecipeModal" data-bs-backdrop="static" tabindex="-1" role="dialog"
+    style="max-height: 90%;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 80%;" role="document">
+      <div class="modal-content">
+        <div class="modal-header d-flex align-items-center justify-content-between">
+          <h2 class="modal-title">Create Recipe</h2>
+          <i type="button" class="close fa fa-times" data-bs-dismiss="modal" aria-label="Close"
+            style="position: absolute; right: 15px; top: 15px;"></i>
+        </div>
+
+        <div class="modal-body" style="font-size: 20px; max-height: 70vh; overflow-y: auto;">
+          <!-- First row: Recipe Name and Exposure -->
+          <div class="row mb-3">
+            <div class="col">
+              <label for="recipeName" class="form-label">Recipe Name:</label>
+              <input type="text" class="form-control" id="RecipeName" name="recipeName" required />
+            </div>
+            <div class="col">
+              <label for="exposure" class="form-label">Exposure (4 - 400):</label>
+              <input type="text" class="form-control" id="Exposure" name="exposure" required />
+            </div>
+          </div>
+
+          <!-- Second row: Neural Network title -->
+          <div class="row mb-3">
+            <div class="col">
+              <h4 class="fw-bold">Neural Network</h4>
+            </div>
+          </div>
+
+          <!-- Third row: NMS Threshold, Num Classes, and Threshold -->
+          <div class="row mb-3">
+            <div class="col">
+              <label for="nmsThreshold" class="form-label">NMS Threshold (0 - 1):</label>
+              <input type="text" class="form-control" id="NmsThreshold" name="nmsThreshold" required />
+            </div>
+            <div class="col">
+              <label for="numClasses" class="form-label">Num Classes:</label>
+              <input type="text" class="form-control" id="NumClasses" name="numClasses" disabled  />
+            </div>
+            <!-- <div class="col">
+                <label for="threshold" class="form-label">Threshold (0 - 1): </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="Threshold"
+                  name="threshold"
+                  required
+                />
+              </div>-->
+          </div>
+
+          <!-- Fourth row: Tiling, Names Files, and Engine Files -->
+          <div class="row mb-3">
+            <div class="col">
+              <label for="tiling" class="form-label">Tiling:</label>
+              <select class="form-select" id="tiling" name="tiling" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="namesFiles" class="form-label">Names Files:</label>
+              <!-- <input
+                  type="text"
+                  class="form-control"
+                  id="namesFiles"
+                  name="namesFiles"
+                  required
+                /> -->
+              <select class="form-select dark-input" id="namesFiles"></select>
+            </div>
+            <div class="col">
+              <label for="engineFiles" class="form-label">Engine Files:</label>
+              <!-- <input
+                  type="text"
+                  class="form-control"
+                  id="engineFiles"
+                  name="engineFiles"
+                  required
+                /> -->
+              <select class="form-select dark-input" id="engineFiles"></select>
+            </div>
+          </div>
+
+          <!-- Fifth row: Defect Table -->
+          <div class="row mb-3">
+            <div class="col table-responsive">
+              <table id="groupInfoTable" class="table" style="width:97%">
+                <thead>
+                  <tr>
+                   <!-- <th class="defectphoto-col">Defect Photo</th> -->
+                    <th class="groupname-col">Group Name</th>
+                    <th class="sensitivity-x-col">Sensitivity_x</th>
+                    <th class="sensitivity-y-col">Sensitivity_y</th>
+                    <th class="threshold-col">Threshold</th>
+                    <th class="enabled-col">Enabled</th>
+                  </tr>
+                </thead>
+                <tbody class="align-middle text-center" style="
+                      color: rgb(36, 35, 35);
+                      text-transform: uppercase;
+                      padding: 20px;
+                    ">
+                  <!-- Add rows for defect table here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <button type="submit" id="submit_recipe" class="btn submit-button">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modifyRecipeModal" tabindex="-1" role="dialog" style="max-height: 90%;" aria-hidden="true"
+    data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 80%;" role="document">
+      <div class="modal-content">
+        <div class="modal-header d-flex align-items-center justify-content-between">
+          <h2 class="modal-title">Modify Recipe</h2>
+          <i type="button" class="close fa fa-times" data-bs-dismiss="modal" aria-label="Close"
+            style="position: absolute; right: 15px; top: 15px;"></i>
+        </div>
+
+        <div class="modal-body modify-recipe-modal"
+          style="font-size: 20px; padding: 20px; max-height: 70vh; overflow-y: auto;">
+          <div class="row mb-3">
+            <div class="col">
+              <label for="modifyRecipeName" class="form-label">Recipe Name:</label>
+              <input type="text" class="form-control" id="modifyRecipeName" name="modifyRecipeName" required />
+            </div>
+            <div class="col">
+              <label for="modifyExposure" class="form-label">Exposure:</label>
+              <input type="text" class="form-control" id="modifyExposure" name="modifyExposure" required />
+            </div>
+          </div>
+
+          <!-- Second row: Neural Network title -->
+          <div class="row mb-3">
+            <div class="col">
+              <h4 class="fw-bold">Neural Network</h4>
+            </div>
+          </div>
+
+          <!-- Third row: NMS Threshold, Num Classes, and Threshold -->
+          <div class="row mb-3">
+            <div class="col">
+              <label for="modifyNmsThreshold" class="form-label">NMS Threshold:</label>
+              <input type="text" class="form-control" id="modifyNmsThreshold" name="modifyNmsThreshold" required />
+            </div>
+            <div class="col">
+              <label for="modifyNumClasses" class="form-label">Num Classes:</label>
+              <input type="text" class="form-control" id="modifyNumClasses" name="modifyNumClasses" disabled  />
+            </div>
+
+            <!-- Fourth row: Tiling, Names Files, and Engine Files -->
+            <div class="row mb-3">
+              <div class="col">
+                <label for="modifyTiling" class="form-label">Tiling:</label>
+                <select class="form-select" id="modifyTiling" name="modifyTiling" required>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="modifyNamesFiles" class="form-label">Names Files:</label>
+                <input type="text" class="form-control" id="modifyNamesFiles" name="modifyNamesFiles" required />
+              </div>
+              <div class="col">
+                <label for="modifyEngineFiles" class="form-label">Engine Files:</label>
+                <input type="text" class="form-control" id="modifyEngineFiles" name="modifyEngineFiles" required />
+              </div>
+            </div>
+
+            <!-- Fifth row: Defect Table -->
+            <div class="row mb-3">
+              <div class="col table-responsive">
+                <table id="modifyGroupInfoTable" class="table" style="width: 97%;">
+                  <thead>
+                    <tr>
+                      <!-- <th class="defectphoto-col">Defect Photo</th> -->
+                      <th class="groupname-col">Group Name</th>
+                      <th class="sensitivity-x-col">Sensitivity_x</th>
+                      <th class="sensitivity-y-col">Sensitivity_y</th>
+                      <th class="threshold-col">Threshold</th>
+                      <th class="enabled-col">Enabled</th>
+                    </tr>
+                  </thead>
+                  <tbody class="align-middle text-center" style="
+                      color: rgb(36, 35, 35);
+                      text-transform: uppercase;
+                      padding: 20px;
+                    ">
+                    <!-- Add rows for defect table here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <button type="submit" id="submit_modified_recipe" class="btn submit-button">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+<script src="assets/js/jquery-3.5.1.min.js"></script>
+<script src="assets/jsoneditor/jsoneditor.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/chart.min.js"></script>
+<script src="assets/js/bs-init.js"></script>
+<script src="assets/js/theme.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    function startTime() {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      let mon = today.getMonth() + 1; // Months start at 0!
+      let dd = today.getDate();
+      let hh = today.getHours();
+      let mm = today.getMinutes();
+      let ss = today.getSeconds();
+
+      if (dd < 10) dd = "0" + dd;
+      if (mon < 10) mon = "0" + mon;
+      if (hh < 10) hh = "0" + hh;
+      if (mm < 10) mm = "0" + mm;
+      if (ss < 10) ss = "0" + ss;
+
+      $("#current_time").html(
+        dd + "/" + mon + "/" + yyyy + " " + hh + ":" + mm + ":" + ss
+      );
+      $("#copyright_year").html(yyyy);
+      setTimeout(startTime, 1000);
+    }
+    startTime();
+  });
+</script>
+<script type="text/javascript" src="assets/js/event.min.js"></script>
+<script type="text/javascript" src="assets/js/roslib.min.js"></script>
+<script type="text/javascript" src="assets/js/recipe_editor.js"></script>
+<script type="text/javascript" src="assets/notification/awesome_notification.js"></script>
+<script type="text/javascript" src="assets/sweet_alert/sweet_alert.js"></script>
+<script src="assets/dataTables/jquery.dataTables.min.js"></script>
+<script src="assets/dataTables/moment.min.js"></script>
+<script src="assets/dataTables/dataTables.dateTime.min.js"></script>
+
+</html>

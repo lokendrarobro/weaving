@@ -1,0 +1,13 @@
+string customer_roll_id
+int32 primary_cut_length
+int32 secondary_cut_length
+int32 tertiary_cut_length
+---
+string data
+int32 primary_body_count
+int32 secondary_body_count
+int32 tertiary_body_count
+int32 defective_body_count
+float32 defective_length
+int32 total_jobs
+int32 total_bodies

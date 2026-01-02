@@ -1,0 +1,196 @@
+<launch>
+
+	<arg name="package_name" value="weaving_inspection" />
+	<param name="project_base_path" value="$(find weaving_inspection)/" />
+	<param name="project_id" value="in_house_demo" />
+	<param name="save_defect_images_lower_threshold" value="0.1" />
+	<param name="resize_image_before_prediction_height" value="0" />
+	<param name="resize_image_before_prediction_width" value="0" />
+	<param name="simulation_mode_on" value="true" />
+	<param name="simulation_mode_with_camera_connected" value="false" />
+	<param name="just_cut_connections_available" value="true" />
+	<param name="current_body_processed_auto_reset_mode" value="true" />
+	<param name="debug_mode" value="true" />
+	<param name="num_past_images_to_store" value="50" />
+	<param name="master_camera_id" value="1" />
+	<param name="frame_width" value="4096" />
+	<param name="frame_height" value="1024" />
+
+	<param name="pixel_per_mm" value="10.24" />
+	<!-- after changing div by 4 in cam-->
+	<param name="pulse_per_mm" value="20.48" />
+
+    <!-- v3.4.7 params -->
+	<!-- max roll length in meter -->
+	<param name="max_roll_length_m" value="20000" />
+	<param name="enable_trigger_db" value="true" />
+	<param name="db_max_reconnection_attempts" value="2" />
+	<!-- v3.4.7 params -->
+
+    <!-- v3.4.8 params -->
+	<param name="is_cutter_conn_nc" value="true" />
+    <!-- v3.4.8 params -->
+
+	<!-- v3.4.9 params -->
+	<param name="buzzer_at_defect" value="start" />
+	<param name="half_cut_mode" value="true"/>
+	<param name="stop_time_after_defect" value="2"/>
+	<!-- v3.4.9 params -->
+
+     <!-- v4.0.0 params -->
+	<param name="crop_margin" value="300"/>
+
+	<!-- after changing div by 4 in cam-->
+	<param name="number_of_cameras" value="1" />
+	<param name="license_host_url" value="http://localhost:3002" />
+	<param name="license_product_id" value="51ded9d4-2549-4500-9cd7-75b9f3aecc7a" />
+
+
+	<param name="report_save_path" value="$(eval find(package_name)+'/db/')" />
+	<param name="db_host" value="0.0.0.0" />
+	<param name="db_user" value="root" />
+	<param name="db_password" value="Robro@123" />
+	<param name="db_name" value="robrodb" />
+	<param name="db_port" value="3306" />
+
+
+	<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+		<arg name="port" value="9090" />
+		<arg name="address" value="0.0.0.0" />
+	</include>
+    
+
+	<node name="image_grabbing_and_inferencing_cam_node_1" pkg="$(arg package_name)" type="camera_node" output="screen" respawn="false">
+     	<param name="group_id" value="1" />  
+		<param name="this_camera_id" value="1" />
+		<param name="this_camera_position" value="Left" />
+		<param name="simulation_images_path" value="/images/cam2/" />
+		<param name="simulation_images_path_prefix" value="" />
+		<param name="simulation_images_path_suffix" value=".jpg" />
+		<param name="simulation_image_service_name" value="camera_node_1" />
+		<param name="cam_ip_address" value="192.100.1.1" />
+		<param name="cam_serial_number" value="J63072556" />
+		<param name="pulses_per_frame" value="1024" />
+		<param name="crop_left" value="0" />
+		<param name="crop_right" value="0" />
+		<param name="camera_brand" value="hikrobot" />
+		<param name="is_top_camera" value="true" />
+		<param name="fov_x_start_mm" value="0" />
+		<param name="fov_x_end_mm" value="640" />
+		<param name="dalsa_camera_model" value="linea_lite" />
+	</node>
+
+	<node name="camera_simulator_node_1" pkg="$(arg package_name)" type="camera_simulation" output="screen" respawn="false">
+		<param name="simulation_images_path" value="/images/cam2/" />
+		<param name="simulation_images_path_prefix" value="" />
+		<param name="simulation_images_path_suffix" value=".jpg" />
+		<param name="simulation_camera_node_number" value="camera_node_1" />
+	</node>
+
+	
+	<node name="weaving_main_node" pkg="$(arg package_name)" type="weaving_main" output="screen" respawn="false">
+
+		<!-- Where to pick report -->
+		<param name="report_save_path" value="$(eval find(package_name)+'/db/')" />
+		<param name="cam2stopper_distance" value="5000" />
+
+	</node>
+
+	<node name="brightness_adjuster_node" pkg="$(arg package_name)" type="brightness_adjuster" output="screen" respawn="false" >
+		<param name="ideal_brightness" value="0.5" />
+		<param name="brightness_tolerance" value="0.1" />
+		<param name="min_exposure_value" value="20.0" />
+		<param name="max_exposure_value" value="50.0" />
+	</node>
+
+	<node name="reporting_node" pkg="$(arg package_name)" type="reporting_node" output="screen" respawn="false">
+		<param name="reporting_base_path" value="$(eval find(package_name)+'/db/')" />
+	</node>
+
+	<!-- <node name="cloud_reporting" pkg="$(arg package_name)" type="databaseOperationsNode.py" output="screen">
+		<param name="cred_path" value="$(eval find(package_name)+'/gcp/key.json')" />
+		<param name="bucket_name" value="labeled_datasets" />
+		<param name="reporting_base_path" value="$(eval find(package_name)+'/db/')" />
+		<param name="ros_rate_frequency" value="0.000277778" />
+		 machine_type = single_layer/double__layer 
+		<param name="machine_type" value="single_layer" />
+		 on the bases of stopping command issued = 1, # on the bases of actual cut length = 2 
+		<param name="saving_type" value="1" />
+	</node> -->
+
+	<node name="pythonServer" pkg="$(arg package_name)" type="webGUIServer.py" output="screen">
+		<param name="browser_name" value="firefox" />
+		<param name="gui_folder_path" value="$(eval find(package_name)+'/gui/')" />
+		<param name="ip_address_of_server" value="0.0.0.0" />
+		<param name="port_number" value="8000" />
+		<param name="command_for_pwa" value="" />
+		<param name="package_name" value="$(arg package_name)" />
+	</node>
+	<!-- <node name="cloud_zip_bucket_node" pkg="$(arg package_name)" type="zipUploader.py" output="screen">
+		<param name="cred_path" value="$(eval find(package_name)+'/gcp/key.json')" />
+		<param name="bucket_name" value="labeled_datasets" />
+	</node> -->
+	<!-- <node name="weaving_api_server_node" pkg="$(arg package_name)" type="apiServer.py" respawn="false" /> -->
+	<node name="real_world_map" pkg="$(arg package_name)" type="real_world_map_node" output="screen" respawn="false">
+		<param name="port" value="/dev/devices/ttyKWIS_PLC" />
+		<param name="baudrate" value="115200" />
+		<param name="parity" value="E" />
+		<param name="bytesize" value="8" />
+		<param name="stopbit" value="1" />
+		<param name="slave_address" value="1" />
+		<param name="plc_pulse_per_mm" value="7.2" />
+		<param name="map_width" value="1024" />
+		<param name="map_height" value="256" />
+		<param name="cam2stopper_distance" value="5000" />
+		<param name="block_punching_for_defect_behind_punch" value="true" />
+		<param name="spout_control_via_cutting_machine_com" value="false" />
+		<param name="use_cutter_sensor_instead_machine_ready" value="false" />
+		<param name="system_installed_in_front_of_dancer" value="true" />
+
+		<!-- <param name="use_electrical_cycle_start" value="true" /> -->
+
+        <!-- v3.4.7 params -->
+        <!-- Popup and stop threshold in meters -->
+	    <param name="error_popup_threshold_m" value="5.0" />
+	    <param name="error_stop_threshold_m" value="20.0" />
+		<!-- v3.4.7 params -->
+
+		<!-- 
+		<param name="plc_tcp_port" value="502" />
+		<param name="plc_tcp_ip" value="192.168.1.5" />
+		-->
+
+		<!-- When saving images, where do we want to save? -->
+		<param name="report_image_save_path" value="$(find weaving_inspection)/gui/images/" />
+		<param name="reporting_folder_name" value="images/" />
+		<param name="dancer_end2stopper_distance_mm" value="2500" />
+		<param name="cutting_mc_port" value="/dev/devices/ttyCUTTING_MACHINE_PLC" />
+		<param name="cutting_mc_baud" value="115200" />
+		<param name="cutting_mc_parity" value="E" />
+		<param name="cutting_mc_bytesize" value="8" />
+		<param name="cutting_mc_stop_bit" value="1" />	
+		<param name="cutting_mc_slave_address" value="1" />	
+		<param name="auto_cut_defect_offset_mm" value="100" />
+
+		<!-- 
+		<param name="cutting_mc_plc_tcp_port" value="502" />
+		<param name="cutting_mc_plc_tcp_ip" value="192.168.1.5" />
+		-->
+		
+		<param name="dancer_control_on_just_cut_mode" value="true" />
+		<param name="spout_and_cutter_control_on_just_cut_mode" value="false" />
+		<param name="is_cycle_start_register" value="false" />
+		<param name="is_cycle_start_electrical" value="false" />
+		<param name="is_machine_ready_register" value="false" />
+		<param name="is_spout_status_register" value="false" />
+	    <param name="is_cycle_start_electrical" value="false" />
+
+		<rosparam param="cutting_mc_addresses">
+        cut_length_register : "0x1016"
+        cycle_start : "0x081E"
+        spout_mode : "0x081C"
+        machine_waiting : "0x081A"
+        </rosparam>
+
+	</node>
+</launch>

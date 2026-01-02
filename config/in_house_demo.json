@@ -1,0 +1,154 @@
+{
+  "NewRecipe": {
+    "camera": {
+      "exposure_time": 119
+    },
+    "nn": {
+      "groups": {
+        "0": {
+          "enabled": true,
+          "ids": [
+            0
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "1": {
+          "enabled": true,
+          "ids": [
+            1
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "10": {
+          "enabled": false,
+          "ids": [
+            10
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "11": {
+          "enabled": true,
+          "ids": [
+            11
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "12": {
+          "enabled": true,
+          "ids": [
+            12
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "13": {
+          "enabled": true,
+          "ids": [
+            13
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "14": {
+          "enabled": true,
+          "ids": [
+            14
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "2": {
+          "enabled": true,
+          "ids": [
+            2
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "3": {
+          "enabled": true,
+          "ids": [
+            3
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "4": {
+          "enabled": true,
+          "ids": [
+            4
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "5": {
+          "enabled": true,
+          "ids": [
+            5
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "6": {
+          "enabled": false,
+          "ids": [
+            6
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "7": {
+          "enabled": true,
+          "ids": [
+            7
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "8": {
+          "enabled": true,
+          "ids": [
+            8
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        },
+        "9": {
+          "enabled": true,
+          "ids": [
+            9
+          ],
+          "sensitivity_x": 100,
+          "sensitivity_y": 100,
+          "threshold": 0.2
+        }
+      },
+      "nms_threshold": 0.45,
+      "num_classes": 15,
+      "threshold": 0.2,
+      "tiling": true,
+      "yolov8": {
+        "engine_file": "fibc_network_25.engine",
+        "names_file": "fibc_network_25.names"
+      }
+    }
+  }
+}

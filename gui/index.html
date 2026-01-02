@@ -1,0 +1,2272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>KWIS 1200 - Robro Systems</title>
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="assets/css/screen_size.css" />
+  <link rel="stylesheet" href="assets/notification/awesome_notification.css" />
+  <link rel="stylesheet" href="assets/css/tabulator.min.css" />
+</head>
+
+<body id="page-top" style="background: rgb(237, 219, 219);cursor: default;">
+  <div id="wrapper">
+    <nav id="navigation_bar"
+      class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 toggled"
+      style="background: #1c4e9b; font-family: Roboto, sans-serif">
+      <div class="container-fluid d-flex flex-column p-0">
+        <a class="navbar-brand d-flex  align-items-center sidebar-brand m-0" href="#">
+          <div class="sidebar-brand-icon mt-2">
+            <img src="assets/img/logo_abbri.png" />
+          </div>
+          <div class="sidebar-brand-text">
+            <img src="assets/img/logo.png" />
+          </div>
+        </a>
+        <ul id="accordionSidebar" class="navbar-nav text-light">
+          <li class="nav-item">
+            <div class="accordion" role="tablist" id="accordion-1" style="margin: 25px 0px; border-style: none">
+              <div id="setting_item" class="accordion-item" style="background: #1c4e9b; border-style: none">
+                <h2 class="accordion-header" role="tab">
+                  <button id="setting_color" class="accordion-button collapsed d-inline" data-bs-toggle="collapse"
+                    data-bs-target="#accordion-1 .item-3" aria-expanded="false" aria-controls="accordion-1 .item-3"
+                    style="
+                        background: #1c4e9b;
+                        padding: 0px;
+                        margin: 10px 0px 0px;
+                      ">
+                    <a id="setting_navbar"
+                      class="navbar-brand d-flex  align-items-center justify-content-xxl-start sidebar-brand m-0"
+                      href="#" style="
+                          border-bottom-width: 1px;
+                          border-bottom-style: solid;
+                        ">
+                      <i class="fas fa-cogs mx-2" style="font-size: 1.1rem"></i>
+                      <div class="sidebar-brand-text mx-2">
+                        <span class="text-capitalize" style="
+                              font-size: 18px;
+                              font-family: Roboto, sans-serif;
+                            ">Settings</span>
+                      </div>
+                    </a>
+                  </button>
+                </h2>
+                <div id="setting_content" class="accordion-collapse collapse item-3" role="tabpanel"
+                  data-bs-parent="#accordion-1" style="
+                      background: rgba(255, 255, 255, 0.21);
+                      margin: -0.509px 0px 10px;
+                    ">
+                  <div class="accordion-body">
+                    <div class="container" style="padding: 0px">
+                      <div class="d-xxl-flex justify-content-xxl-center align-items-xxl-center" style="
+                            padding: 10px;
+                            background: transparent;
+                            border-radius: 10px;
+                          "></div>
+                      <div id="threshold_value_div">
+                        <label class="form-label" for="threshold_value" style="margin: 0px 0px">#Threshold</label>
+                        <select class="form-select" id="threshold_value" style="margin: 5px; width: 140px" value="0.1">
+                          <optgroup label="Threshold">
+                            <option value="0.1">0.1</option>
+                            <option value="0.2">0.2</option>
+                            <option value="0.3">0.3</option>
+                            <option value="0.4">0.4</option>
+                            <option value="0.5">0.5</option>
+                            <option value="0.6">0.6</option>
+                            <option value="0.7">0.7</option>
+                            <option value="0.8">0.8</option>
+                            <option value="0.9">0.9</option>
+                          </optgroup>
+                        </select>
+                      </div>
+                      <label class="form-label" for="threshold_value" style="margin: 0px 0px">#Exposure</label>
+                      <select class="form-select" id="camera_exposure" style="margin: 5px; width: 140px" value="110">
+                        <optgroup label="Exposure" id="val_exposure"></optgroup>
+                      </select>
+                      <button class="btn btn-primary mt-3" id="btn_save_past_images" type="button" style="
+                            background: #e4e4e4;
+                            font-size: 16px;
+                            box-shadow: 0px 3px 6px 2px #00000029;
+                            border: 1px solid #1c4e9b;
+                            margin: 5px;
+                            width: 140px;
+                          ">
+                        <span style="color: #1c4e9b">Save Past Images</span>
+                      </button>
+
+                      <button class="btn btn-primary mt-3" id="change_access_btn" type="button" style="
+                            background: #e4e4e4;
+                            font-size: 16px;
+                            box-shadow: 0px 3px 6px 2px #00000029;
+                            border: 1px solid #1c4e9b;
+                            margin: 5px;
+                            width: 140px;
+                          ">
+                        <span style="color: #1c4e9b" id="admin_enable_text">Operator</span>
+                      </button>
+
+                      <div class="row mt-3 mx-1">
+                        <label class="col-12 col-form-label" for="save_image">Save Defect Images</label>
+                        <div class="col-sm-12">
+                          <div class="form-check form-switch">
+                            <input style="width: 80px; height: 30px" class="form-check-input" type="checkbox"
+                              role="switch" id="save_image" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row mt-3 mx-1">
+                        <label class="col-sm-12 col-form-label" for="stop_at_every_last_toggle_button">Stop At Last
+                          Defect</label>
+                        <div class="col-sm-12">
+                          <div class="form-check form-switch">
+                            <input style="width: 80px; height: 30px" class="form-check-input" type="checkbox"
+                              role="switch" id="stop_at_last_defect_toggle_button" checked />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mt-3 mx-1">
+                        <label class="col-sm-12 col-form-label" for="ignore_inspection">Ignore Inspection</label>
+                        <div class="col-sm-12">
+                          <div class="form-check form-switch">
+                            <input style="width: 80px; height: 30px" class="form-check-input" type="checkbox"
+                              role="switch" id="ignore_inspection" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mt-3 mx-1">
+                        <label class="col-sm-12 col-form-label" for="fully_ignore_disabled">Ignore Disabled
+                          Defects</label>
+                        <div class="col-sm-12">
+                          <div class="form-check form-switch">
+                            <input style="width: 80px; height: 30px" class="form-check-input" type="checkbox"
+                              role="switch" id="fully_ignore_disabled" />
+                          </div>
+                        </div>
+                      </div>
+                      <button class="btn btn-primary mt-3" id="btn_show_last_popup" type="button" style="
+                      background: #e4e4e4;
+                      font-size: 16px;
+                      box-shadow: 0px 3px 6px 2px #00000029;
+                      border: 1px solid #1c4e9b;
+                      margin: 5px;
+                      width: 140px;
+                    ">
+                        <span style="color: #1c4e9b">Show Last Popup</span>
+                      </button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="recipe_table" class="accordion-item" style="background: #1c4e9b; border-style: none">
+                <h2 class="accordion-header" role="tab">
+                  <button id="recipe_btn" class="accordion-button collapsed d-inline" data-bs-toggle="collapse"
+                    data-bs-target="#accordion-1 .item-4" aria-expanded="false" aria-controls="accordion-1 .item-4"
+                    style="
+                        background: #1c4e9b;
+                        padding: 0px;
+                        margin: 10px 0px 0px;
+                      ">
+                    <a id="report_navbar"
+                      class="navbar-brand d-flex  align-items-center justify-content-xxl-start sidebar-brand m-0" style="
+                          border-bottom-width: 1px;
+                          border-bottom-style: solid;
+                        ">
+                      <i class="fa fa-wrench mx-2" style="font-size: 1.3rem"></i>
+                      <div class="sidebar-brand-text mx-1">
+                        <span class="text-capitalize" style="
+                              font-size: 18px;
+                              font-family: Roboto, sans-serif;
+                            ">#RecipeEdit</span>
+                      </div>
+                    </a>
+                  </button>
+                </h2>
+              </div>
+              <div id="barcode_item" data-bs-toggle="modal" class="accordion-item"
+                style="background: #1c4e9b; border-style: none">
+                <h2 class="accordion-header" role="tab">
+                  <button id="barcode_color" class="accordion-button collapsed d-inline" data-bs-toggle="collapse"
+                    data-bs-target="#accordion-1 .item-4" aria-expanded="false" aria-controls="accordion-1 .item-4"
+                    style="
+                      background: #1c4e9b;
+                      padding: 0px;
+                      margin: 10px 0px 0px;
+                    ">
+                    <a id="barcode_navbar"
+                      class="navbar-brand d-flex align-items-center justify-content-xxl-start sidebar-brand m-0" style="
+                        border-bottom-width: 1px;
+                        border-bottom-style: solid;
+                      ">
+                      <!-- <i class="fa fa-barcode mx-2" style="font-size: 1.3rem"></i> -->
+                      <img src="./assets/img/barcode.jpg" width="28rem" height="28rem" style="border-radius: 0.5rem;"
+                        class="mx-0" />
+                      <div class="sidebar-brand-text mx-3">
+                        <span class="text-capitalize" style="
+                            font-size: 18px;
+                            font-family: Roboto, sans-serif;
+                          ">Barcode Config</span>
+                      </div>
+                    </a>
+                  </button>
+                </h2>
+              </div>
+
+              <div class="accordion-item" style="background: #1c4e9b; border-style: none">
+                <h2 class="accordion-header" role="tab">
+                  <button class="accordion-button collapsed d-inline" data-bs-toggle="collapse"
+                    data-bs-target="#accordion-1 .item-4" aria-expanded="false" aria-controls="accordion-1 .item-4"
+                    style="background: #1c4e9b; padding: 0px; margin: 10px 0px 0px;">
+                    <a class="navbar-brand d-flex align-items-center justify-content-xxl-start sidebar-brand m-0"
+                      style="border-bottom-width: 1px; border-bottom-style: solid;">
+                      <i class="fa fa-shield-alt mx-2" style="font-size: 1.3rem"></i>
+                      <div class="sidebar-brand-text mx-3">
+                        <div class="text-capitalize" style="font-size: 18px; font-family: Roboto, sans-serif;">
+                          License Expires
+                        </div>
+                        <div id="license_expires" style="font-size: 14px;">31/12/2019</div>
+                      </div>
+                    </a>
+                  </button>
+                </h2>
+              </div>
+
+              <div class="accordion-item" style="background: #1c4e9b; border-style: none">
+                <h2 class="accordion-header" role="tab">
+                  <button class="accordion-button collapsed d-inline" id="openCutMasterDialog" data-bs-toggle="collapse"
+                    data-bs-target="#accordion-1 .item-4" aria-expanded="false" aria-controls="accordion-1 .item-4"
+                    style="
+                        background: #1c4e9b;
+                        padding: 0px;
+                        margin: 10px 0px 0px;
+                      ">
+                    <div class="navbar-brand d-flex align-items-center justify-content-xxl-start sidebar-brand m-0"
+                      style="border-bottom: 1px solid">
+                      <i class="fas fa-cut" style="font-size: 1.3rem;"></i>
+                      <div class="sidebar-brand-text mx-3">
+                        <span class="text-capitalize" style="
+                              font-size: 18px;
+                              font-family: Roboto, sans-serif;
+                            ">#AutoCutCfg</span>
+                      </div>
+                    </div>
+                  </button>
+                </h2>
+              </div>
+          </li>
+        </ul>
+        <div class="text-center d-none d-md-inline">
+          <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"
+            style="width: 60px; height: 60px"></button>
+        </div>
+      </div>
+    </nav>
+    <div class="d-flex flex-column" id="content-wrapper">
+      <div id="content" style="background: #e4e4e4">
+        <nav class="navbar navbar-light navbar-expand bg-white shadow-none mb-4 topbar static-top"
+          style="background: linear-gradient(#e4e4e4, #e4e4e4), #e4e4e4">
+          <div class="container-fluid">
+            <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button">
+              <i class="fas fa-bars"></i>
+            </button>
+            <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
+              <div style="text-align: left;">
+                <h1 style="
+                  font-size: 24px;
+                  font-family: Roboto, sans-serif;
+                  text-align: left;
+                  color: #707070;
+                  font-weight: bold;
+                  margin: 0;
+                  padding: 0;
+                ">
+                  KWIS-1200 v<span id="version">0.0.0</span>
+                </h1>
+                <div id="build_version" style="
+                  font-size: 12px;
+                  font-family: Roboto, sans-serif;
+                  color: #606060;
+                  font-weight: normal;
+                  margin: 0;
+                  padding: 0;
+                ">
+                  0.0.0
+                </div>
+              </div>
+            </form>
+
+            <div class="d-inline-flex align-items-xxl-center">
+              <h1 id="current_time" style="
+                    margin: 0px 10px;
+                    font-size: 24px;
+                    color: #707070;
+                    font-weight: bold;
+                  "></h1>
+              <div class="mx-2" id="refreshButton">
+                <i class="fas fa-sync-alt fa-2x" style="color: #1c4e9b"></i>
+              </div>
+              <div class="mx-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <i class="fas fa-power-off fa-2x" style="color: #1c4e9b"></i>
+              </div>
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">
+                        Shutdown
+                      </h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">Do you really want to exit?</div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                        No
+                      </button>
+
+                      <button type="button" id="shutdown" class="btn btn-primary">
+                        Yes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col">
+              <div style="
+                    margin: -18px 0px 0px;
+                    border: 0.5px solid #707070;
+                    border-bottom: 1px none var(--bs-pink);
+                    opacity: 0.26;
+                  "></div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 5px">
+
+            <!-- Running Meter Card (Aligned & Large Font) -->
+            <div class="col" id="runningmetercard" style="height: 118px;">
+              <div
+                style="width: 100%; height: 100%; border-radius: 6px; overflow: hidden; background: #baf8d5; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #005a27;">
+                <div
+                  style="font-size: 16px; font-weight: 600; margin-bottom: 4px; height: 22px; display: flex; align-items: center;">
+                  Running Meter</div>
+                <div style="font-size: 32px; font-weight: bold;"><span id="running_meter">0.00</span></div>
+              </div>
+            </div>
+
+            <!-- Primary Card -->
+            <!-- <div class="col" id="primaryCard" style="height: 118px; border-radius: 6px;">
+            <div
+              style="width: 100%; height: 100%; border-radius: 6px; overflow: hidden; background-color: #baf8d5; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #005a27;">
+              <div
+                style="font-size: 16px; font-weight: 600; margin-bottom: 4px; height: 22px; display: flex; align-items: center;">
+                Primary (<span id="primarycutLengthValue">0</span>)</div>
+              <div style="display: flex; justify-content: center; gap: 20px;">
+                <div style="text-align: center;">
+                  <div style="font-size: 12px; font-weight: bold;">Count</div>
+                  <div id="primary_length" style="font-size: 20px; font-weight: bold;">0</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-size: 12px; font-weight: bold;">Meter</div>
+                  <div id="primary_meter" style="font-size: 20px; font-weight: bold;">0</div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+            <!-- Modified Primary Card -->
+            <div class="col" id="primaryCard" style="height: 118px; border-radius: 6px;">
+              <div
+                style="width: 100%; height: 100%; border-radius: 6px; overflow: hidden; background-color: #baf8d5; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #005a27;">
+                <div
+                  style="font-size: 16px; font-weight: 600; margin-bottom: 4px; height: 22px; display: flex; align-items: center;">
+                  Primary (<span id="primarycutLengthValue">0</span>)
+                </div>
+                <div style="font-size: 32px; font-weight: bold;" id="primary_length">0</div>
+              </div>
+            </div>
+
+            <!-- Secondary Card -->
+            <!-- <div class="col" id="secondarycard" style="height: 118px; border-radius: 6px;">
+              <div
+                style="width: 100%; height: 100%; border-radius: 6px; overflow: hidden; background-color: #b7c3e6; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #1e41a8;">
+                <div
+                  style="font-size: 16px; font-weight: 600; margin-bottom: 4px; height: 22px; display: flex; align-items: center;">
+                  Secondary (<span id="SecondarycutLengthValue">0</span>)</div>
+                <div style="display: flex; justify-content: center; gap: 20px;">
+                  <div style="text-align: center;">
+                    <div style="font-size: 12px; font-weight: bold;">Count</div>
+                    <div id="secondary_length" style="font-size: 20px; font-weight: bold;">0</div>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="font-size: 12px; font-weight: bold;">Meter</div>
+                    <div id="secondary_meter" style="font-size: 20px; font-weight: bold;">0</div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- Modified Secondary Card  -->
+            <div class="col" id="secondarycard" style="height: 118px; border-radius: 6px;">
+              <div
+                style="width: 100%; height: 100%; border-radius: 6px; overflow: hidden; background-color: #b7c3e6; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #1e41a8;">
+                <div
+                  style="font-size: 16px; font-weight: 600; margin-bottom: 4px; height: 22px; display: flex; align-items: center;">
+                  Secondary (<span id="SecondarycutLengthValue">0</span>)
+                </div>
+                <div style="font-size: 32px; font-weight: bold;" id="secondary_length">0</div>
+              </div>
+            </div>
+
+            <!-- Tertiary Card -->
+            <!-- <div class="col" id="tertiarycard" style="height: 118px; border-radius: 6px;">
+              <div
+                style="width: 100%; height: 100%; border-radius: 6px; overflow: hidden; background-color: #b7c3e6; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #1e41a8;">
+                <div
+                  style="font-size: 16px; font-weight: 600; margin-bottom: 4px; height: 22px; display: flex; align-items: center;">
+                  Tertiary (<span id="TertiarycutLengthValue">0</span>)</div>
+                <div style="display: flex; justify-content: center; gap: 20px;">
+                  <div style="text-align: center;">
+                    <div style="font-size: 12px; font-weight: bold;">Count</div>
+                    <div id="tertiary_length" style="font-size: 20px; font-weight: bold;">0</div>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="font-size: 12px; font-weight: bold;">Meter</div>
+                    <div id="tertiary_meter" style="font-size: 20px; font-weight: bold;">0</div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- Modified Tertiary Card (Aligned & Large Font) -->
+            <div class="col" id="tertiarycard" style="height: 118px; border-radius: 6px;">
+              <div
+                style="width: 100%; height: 100%; border-radius: 6px; overflow: hidden; background-color: #b7c3e6; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #1e41a8;">
+                <div
+                  style="font-size: 16px; font-weight: 600; margin-bottom: 4px; height: 22px; display: flex; align-items: center;">
+                  Tertiary (<span id="TertiarycutLengthValue">0</span>)
+                </div>
+                <div style="font-size: 32px; font-weight: bold;" id="tertiary_length">0</div>
+              </div>
+            </div>
+
+            <!-- Total Defects Card (Aligned & Large Font) -->
+            <div class="col" id="defectcard" style="height: 118px; border-radius: 6px;">
+              <div
+                style="width: 100%; height: 100%; border-radius: 6px; overflow: hidden; background: #ffbcc4; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #ea5061;">
+                <div
+                  style="font-size: 16px; font-weight: 600; margin-bottom: 4px; height: 22px; display: flex; align-items: center;">
+                  Total Defects</div>
+                <div style="font-size: 32px; font-weight: bold;"><span id="no_of_defects">0</span></div>
+              </div>
+            </div>
+
+            <!-- Defective Card -->
+            <div class="col" id="defected_card" style="height: 118px; border-radius: 6px;">
+              <div
+                style="width: 100%; height: 100%; border-radius: 6px; overflow: hidden; background-color: #ffbcc4; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #ea5061;">
+                <div
+                  style="font-size: 16px; font-weight: 600; margin-bottom: 4px; height: 22px; display: flex; align-items: center;">
+                  Defective</div>
+                <div style="display: flex; justify-content: center; gap: 20px;">
+                  <div style="text-align: center;">
+                    <div style="font-size: 12px; font-weight: bold;">Count</div>
+                    <div id="defect_length" style="font-size: 20px; font-weight: bold;">0</div>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="font-size: 12px; font-weight: bold;">Weight</div>
+                    <div id="defect_meter" style="font-size: 20px; font-weight: bold;">0</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <!-- <> -->
+
+            <div class="col" id="infocard" style="width: 26%; min-width: 26%;">
+              <div class="card" style="
+                    background: #3f51b5;
+                    box-shadow: 0px 3px 6px 2px #00000029;
+                    border-style: none;
+                    border-radius: 5.6px;
+                    height: 118px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  ">
+
+                <div class="row flex-nowrap w-100 px-2" style="
+                      color: white;
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      gap: 0.5rem;
+                      overflow-x: auto;
+                    ">
+
+                  <!-- Card 1: Next Stopping -->
+                  <div class="custom-card" id="next-stopping-card" style="
+                        flex: 1 1 0;
+                        min-width: 6rem;
+                        background-color: #1e3bbb;
+                        border-radius: 6px;
+                      ">
+                    <div class="custom-card-header bg-primary text-white">
+                      <h4 class="custom-card-title p-2" style="font-weight: bold; font-size: 1rem;">
+                        <i class="fas fa-stop"></i> Next Stopping (mm)
+                      </h4>
+                    </div>
+                    <h4 id="next_stopping" class="row" style="font-weight: bold; justify-content: center">N/A</h4>
+                  </div>
+
+                  <!-- Card 2: Good Body Count -->
+                  <div class="custom-card" id="good-body-card" style="
+                        flex: 1 1 0;
+                        min-width: 6rem;
+                        background-color: #5a4bdf;
+                        box-shadow: 0 3px 14px 3px rgba(9, 10, 10, 0.25);
+                        border-radius: 6px;
+                      ">
+                    <div class="custom-card-header bg-primary text-white">
+                      <h6 class="custom-card-title p-2" style="font-weight: bold">
+                        <i class="fas fa-exclamation-triangle"></i> Cycle state
+                      </h6>
+                    </div>
+                    <h4 id="good-body-count" style="
+                          font-weight: bold;
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                          padding: 0 12px;
+                        ">
+                      00
+                    </h4>
+                  </div>
+
+                  <!-- Card 3: Punch -->
+                  <div class="custom-card" style="
+                        flex: 1 1 0;
+                        min-width: 6rem;
+                        box-shadow: 0 3px 14px 3px rgba(9, 10, 10, 0.25);
+                        border-radius: 6px;
+                      ">
+                    <div class="custom-card-header bg-primary text-white">
+                      <h6 class="custom-card-title p-2" style="font-weight: bold">
+                        <i class="fas fa-exclamation-triangle"></i> Punch
+                      </h6>
+                    </div>
+                    <div style="
+                          font-weight: bold;
+                          background-color: #61a867;
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                          height: 4.5rem;
+                          box-shadow: 0 3px 14px 3px rgba(9, 10, 10, 0.25);
+                        ">
+                      <h2 id="punchblk">N/A</h2>
+                    </div>
+                  </div>
+
+                  <!-- Card 4: Dynamic Mode -->
+                  <div class="custom-card" id="dynamic-card" style="
+                        flex: 1 1 0;
+                        min-width: 6rem;
+                        background-color: #1e3bbb;
+                        border-radius: 6px;
+                      ">
+                    <div class="custom-card-header bg-primary text-white">
+                      <h6 class="custom-card-title p-2" style="font-weight: bold">
+                        <span id="card-label" style="width: 7rem;">Cycle state</span>
+                      </h6>
+                    </div>
+                    <div class="row" style="
+                          font-weight: bold;
+                          width: 100%;
+                          font-size: 1rem;
+                          justify-content: center;
+                          align-items: center;
+                          height: 4.5rem;
+                          box-shadow: 0 3px 14px 3px rgba(9, 10, 10, 0.25);
+                        ">
+                      <span id="dynamic-value" style="
+                        color: white;
+                        background-color: #61a867;
+                        padding: 8px 12px;
+                        border-radius: 4px;
+                        display: inline-block;
+                        font-family: sans-serif;
+                        font-weight: bold;
+                      ">Auto: True</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+
+          <div class="row">
+            <div class="col-lg-9 mt-2" style="width: 75%">
+              <div class="card border rounded d-xxl-flex" style="box-shadow: 0px 3px 6px 2px #00000029">
+                <div class="card-body text-primary" style="justify-content: space-between; background: #ffffff">
+                  <div style="display: flex; justify-content: space-around">
+                    <h1 class="d-xxl-flex" style="
+                          color: #1c4e9b;
+                          font-size: 21px;
+                          font-family: Roboto, sans-serif;
+                          font-weight: bold;
+                        ">
+                      Map & Defect Details
+                    </h1>
+                    <h1 id="image_number" class="d-xxl-flex" style="
+                          color: #1c4e9b;
+                          font-size: 21px;
+                          font-family: Roboto, sans-serif;
+                          font-weight: bold;
+                        ">
+                      Live Image
+                    </h1>
+                  </div>
+                  <div class="card" style="width: 100%; border: none; height: 100%">
+                    <div class="row">
+                      <div class="col-lg-7 mt-3">
+                        <div class="card border rounded" style="box-shadow: 0px 3px 6px 3px #00000029">
+                          <div id="camera_names_container"></div>
+                          <img id="defect_map_image" style="width: 100%; height: 640px" />
+                        </div>
+                      </div>
+                      <div class="col-lg-5 mt-3">
+                        <div class="card border rounded" id="camera_container_img" style="
+                              box-shadow: 0px 3px 6px 3px #00000029;
+                              height: 677px;
+                            ">
+                          <div class="row">
+                            <div class="col">
+                              <div class="border rounded d-flex justify-content-end align-items-center" style="
+                                    background: #e4e4e4;
+                                    color: #1c4e9b;
+                                    text-align: center;
+                                  "></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Three Defect Image -->
+                    <div class="row" style="margin-top: 15px">
+                      <!-- section for past defected images -->
+                      <div class="col-lg-4 col-xl-4 col-xxl-4">
+                        <div class="card border rounded" style="
+                              box-shadow: 0px 3px 6px 3px #00000029;
+                              height: 155px;
+                            ">
+                          <div class="card-body d-xxl-flex justify-content-xxl-center">
+                            <img class="previous_image img-fluid" id="previous_defect_image_1" alt="Defect Identified"
+                              src="assets/img/white.jpg" style="width: 100%; height: 100px" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-xl-4 col-xxl-4">
+                        <div class="card border rounded" style="
+                              box-shadow: 0px 3px 6px 3px #00000029;
+                              height: 155px;
+                            ">
+                          <div class="card-body d-xxl-flex justify-content-xxl-center">
+                            <img class="previous_image img-fluid" id="previous_defect_image_2" alt="Defect Identified"
+                              src="assets/img/white.jpg" style="width: 100%; height: 100px" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-xl-4 col-xxl-4">
+                        <div class="card border rounded" style="
+                              box-shadow: 0px 3px 6px 3px #00000029;
+                              height: 155px;
+                            ">
+                          <div class="card-body d-xxl-flex justify-content-xxl-center">
+                            <img class="previous_image img-fluid" id="previous_defect_image_3" alt="Defect Identified"
+                              src="assets/img/white.jpg" style="width: 100%; height: 100px" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Job Info. -->
+            <div class="col-lg-3 mt-2" style="padding-left: 0px">
+              <div class="card border rounded d-xxl-flex" style="box-shadow: 0px 3px 6px 2px #00000029; height: 930px">
+                <div class="card-body text-primary" style="background: #ffffff; padding: 10px">
+                  <div class="header-container" style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 2px;
+                      ">
+                    <div style="display: flex; align-items: center; padding: 0.1rem;">
+                      <div style="margin-right: 0.1rem;">
+                        <button id="open_workorder_modal" style="border: none; background: none; padding: 0;">
+                          <div class="d-inline-flex justify-content-center align-items-center rounded-circle"
+                            style="width: 40px; height: 40px; overflow: hidden;">
+                            <img src="./assets/img/workorderr.png" alt="Work Order" width="35rem" height="35rem">
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+
+
+                    <h1 class="d-xxl-flex justify-content-xxl" style="
+                    font-size: 17px;
+                    font-family: Roboto, sans-serif;
+                    font-weight: bold;
+                    color: #1c4e9b;
+                    margin-top: 1px;
+                    white-space: nowrap;
+                  ">
+                      Job Info
+                    </h1>
+
+                    <div style="display: flex; align-items: center; padding: 0.5rem;">
+                      <!-- Icon Section -->
+                      <div style="margin-right: 0.5rem;">
+                        <button id="open_barcode_modal"
+                          style="border: none; background: none; padding: 0; margin-left: 15px;">
+                          <img src="./assets/img/barcode.jpg" width="35rem" height="35rem"
+                            style="border-radius: 0.5rem;" alt="Barcode" />
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card" style="
+                          background-color: #1c4e9b;
+                          color: white;
+                          padding: 2px;
+                          width: 400px;
+                          margin-bottom: 6px;
+                        ">
+                      <label id="cuttingModeValue" class="underline-label blue-text" style="
+                            font-weight: bold;
+                            font-size: 16px;
+                            margin-left: 2px;
+                          ">
+                        <span class="value" style="
+                              font-weight: bold;
+                              color: white;
+                              padding-left: 1px;
+                              padding-right: 1px;
+                            "></span>
+                        <i class="fas fa-edit" id="editJob" style="
+                              cursor: pointer;
+                              font-size: 16px;
+                              margin-left: 1px;
+                            "></i>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div id="displayValues" class="values-container" style="font-size: 14px;">
+                    <div class="value-row">
+                      <div class="value-col">
+                        <label id="rollIdValue" class="underline-label blue-text">Roll ID: <span
+                            class="value"></span></label>
+                      </div>
+                      <div class="value-col" style="margin-left: 24px">
+                        <label id="gsmValue" class="underline-label blue-text">GSM: <span class="value"></span></label>
+                      </div>
+                    </div>
+                    <div class="value-row">
+                      <div class="value-col">
+                        <label id="offsetValue" class="underline-label blue-text">Offset: <span
+                            class="value"></span></label>
+                      </div>
+                      <div class="value-col" style="margin-left: 24px">
+                        <label id="fabricWidthValue" class="underline-label blue-text">Width: <span
+                            class="value"></span></label>
+                      </div>
+                    </div>
+                    <div class="value-row">
+                      <div class="value-col">
+                        <label id="rollWeightValue" class="underline-label blue-text">Roll Weight: <span
+                            class="value"></span></label>
+                      </div>
+                      <div class="value-col" style="margin-left: 24px">
+                        <label id="cutLengthValue" class="underline-label blue-text">Cut Length: <span
+                            class="value"></span></label>
+                      </div>
+                    </div>
+
+                    <div class="value-row secondaryCutLengthValue" style="display: flex">
+                      <div class="value-col">
+                        <label id="secondaryCutLengthValue" class="underline-label blue-text"
+                          style="margin-right: 10px">Secondary Length: <span class="value"></span></label>
+                      </div>
+                      <div class="value-col tertiaryCutLengthValue" style="margin-left: 24px">
+                        <label id="tertiaryCutLengthValue" class="underline-label blue-text"
+                          style="margin-right: 10px">Tertiary Length: <span class="value"></span></label>
+                      </div>
+                    </div>
+
+                    <div class="value-row">
+                      <div class="value-col">
+                        <label id="punchingStatusValue" class="underline-label blue-text">Punching: <span
+                            class="value"></span></label>
+                      </div>
+                      <div class="value-col" style="margin-left: 24px">
+                        <label id="recipesValue" class="underline-label blue-text">Recipes: <span
+                            class="value"></span></label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-3">
+                    <div class="col-sm-12">
+                      <button class="btn btn-primary star roll_toggle" type="button" style="
+                            background: #4d8ceb;
+                            padding: 15px;
+                            font-size: 20px;
+                            font-family: Roboto, sans-serif;
+                            box-shadow: 0px 3px 6px 2px #00000029;
+                            color: #ffffff;
+                            width: 100%;
+                            font-weight: bold;
+                          ">
+                        Start
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Systems Health  -->
+
+
+                  <div class="header-container mt-3" id="displayHealth" style="
+                        display: flex;
+                        font-size: 17px;
+                        align-items: center;
+                        justify-content: space-between;
+                      ">
+                    <h1 class="" style="
+                          color: #1c4e9b;
+                          font-size: 17px;
+                          font-family: Roboto, sans-serif;
+                          font-weight: bold;
+                        ">
+                      System Data & Health
+                    </h1>
+                    <!-- <i class="fas fa-edit" id="viewDiagnostics"
+                      style="cursor: pointer; color: #1c4e9b; font-size: 25px"></i> -->
+                  </div>
+                  <div id="example_table"></div>
+                  <div class="col-12 mt-2">
+                    <div style="display: flex;justify-content: space-evenly;">
+                      <div>
+                        <i class="fa fa-camera-retro " style="color: #1c4e9b; font-size: 18px; "></i>
+                        <div class="mt-1 main_processed_image" style="color: #1c4e9b; font-size: small;"> Main:
+                          <span class="main_processed_images" style="color: #707070; font-size: small;">NA</span>
+                        </div>
+                      </div>
+                      <div id="camera_container_show"></div>
+                    </div>
+                    <!-- parent-div start -->
+                    <div id="parent-div">
+                      <!-- plc start -->
+                      <div
+                        style="display: flex;justify-content: space-evenly;flex-direction: row;margin-top: 15px; margin-bottom: 15px;">
+                        <div style="display: flex;flex-direction: column; justify-content: center;align-items: center;">
+                          <i class="fas fa-cogs" id="kwis_plc" style="font-size: 18px; color: #1c4e9b"></i>
+                          <br />
+                          <span style="
+                              color: grey;
+                              font-weight: normal;
+                              font-size: smaller;
+                            ">
+                            Kwis PLC
+                        </div>
+                        <div id="cutting_mc_plc_indicator_div"
+                          style="display: flex;flex-direction: column; justify-content: center;align-items: center;">
+                          <i class="fas fa-cogs" id="cutting_mc_plc" style="font-size: 18px; color: #1c4e9b"></i>
+                          <br />
+                          <span style="
+                                  color: grey;
+                                  font-weight: normal;
+                                  font-size: smaller;
+                                ">
+                            Cutting M/C PLC
+                          </span>
+                        </div>
+                      </div>
+
+                      <!-- plc end  -->
+
+                      <div class="row mt-2">
+                        <div class="col-lg-12">
+                          <div class="row mt-1">
+                            <div class="col-lg-15 text-center d-flex flex-row justify-content-left">
+                              <div>
+
+                                <span id="cutter_sensor_on_off_status" class="dot"></span>
+                              </div>
+                              <span id="cutter_sensor_detail_text" class="m-1 d-flex;"
+                                style="color: black; font-weight: normal; font-size: smaller;">Cutter Sensor &nbsp;
+                                &nbsp;</span>
+                              <span id="loop_time_status" class="dot"></span>
+                              <span id="loop_time_detail_text" class="m-1 d-flex;"
+                                style="color: black; font-weight: normal; font-size: smaller;">Loop Time </span>
+                              <br />
+                            </div>
+
+
+                            <table id="cutter_sensor_data_table" class="data-display-table-style mt-1">
+                              <tbody></tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mt-3 mb-1">
+                        <div class="col-lg-12">
+                          <div class="row">
+                            <div class="d-flex justify-content-left">
+                              <!-- <i id="dancer_sensor" class="fas fa-microchip" style="font-size: 24px; color: #1c4e9b"></i> -->
+                              <span id="dancer_sensor_on_off_status" class="dot m-1"> </span>
+                              <span style="
+                                  color: black;
+                                  font-weight: normal;
+                                  font-size: smaller;
+                                  margin-left:1px;
+                                  margin-top: 2px;
+                                ">Dancer Sensor & loop close</span>
+                            </div>
+                            <table id="dancer_sensor_data_table" class="data-display-table-style mt-1">
+                              <tbody></tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <!-- <div class="row mt-3 mb-1">
+                        <div class="col-lg-12">
+                          <div class="row">
+                            <div class="d-flex justify-content-left"> -->
+                      <!-- <i id="dancer_sensor" class="fas fa-microchip" style="font-size: 24px; color: #1c4e9b"></i> -->
+                      <!-- <span id="brightness_set_status" class="dot m-1"> </span>
+                              <span style="
+                                  color: black;
+                                  font-weight: normal;
+                                  font-size: smaller;
+                                  margin-left:1px;
+                                  margin-top: 2px;
+                                ">Brightness</span>
+                            </div>
+                            <span id="brightness_values"></span>
+
+                            <tbody></tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div> -->
+
+                      <div class="row mt-3 mb-1">
+                        <div class="col-lg-12">
+                          <div class="row" id="cutting_plan_row">
+                            <div class="d-flex justify-content-left">
+                              <!-- <i id="dancer_sensor" class="fas fa-microchip" style="font-size: 24px; color: #1c4e9b"></i> -->
+                              <span id="cutting_plan_status" class="dot m-1"></span>
+                              <span style="
+                                  color: black;
+                                  font-weight: normal;
+                                  font-size: smaller;
+                                  margin-left:1px;
+                                  margin-top: 2px;
+                                ">Cutting Plan</span>
+                            </div>
+                            <table id="cycle_time_data_table" class="data-display-table-style mt-1">
+                              <tbody></tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row mt-3 mb-1">
+                      <div class="col-lg-12">
+                        <div class="row">
+                          <!-- Flex row for indicator and value in one line -->
+                          <div class="d-flex align-items-center">
+                            <!-- Status dot -->
+                            <span id="brightness_set_status" class="dot me-2"></span>
+
+                            <!-- Label -->
+                            <span style="color: black; font-weight: normal; font-size: smaller; margin-right: 8px;">
+                              Brightness:
+                            </span>
+
+                            <!-- Value -->
+                            <span id="brightness_values" style="font-size: smaller;"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                    <!-- parent-end -->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="container">
+              <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
+                <div class="col-md-6 d-flex align-items-center">
+                  <span class="text-muted">Copyright © <span id="copyright_year"> 2021</span> Robro
+                    Systems Pvt Ltd. All rights reserved</span>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                  <span class="text-muted">+91 9893452000 | +91 9981641111 |
+                    hello@robrosystems.com</span>
+                </div>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+  </div>
+
+  <!--Defected image modal -->
+  <div class="modal fade bd-example-modal-lg" id="defected_image_modal" tabindex="-1" role="dialog" aria-hidden="true"
+    style="margin-top: 2%">
+    <div class="modal-dialog modal-lg" role="document" style="
+          width: 100%;
+          min-width: 80%;
+          margin: 20px auto;
+          padding: 0;
+        ">
+      <div class="modal-content" style="
+            height: auto;
+            min-height: 80%;
+            width: auto;
+            min-width: 80%;
+            border: 0 none;
+            border-radius: 0;
+            box-shadow: none;
+          ">
+        <!-- Modal heading -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Found a Defect!</h5>
+        </div>
+        <!-- Modal body with image -->
+        <div class="modal-body">
+          <img class="modal-body" id="defected_image" src="" style="width: 100%; height: 100%" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Stopping Defect image modal -->
+  <div class="modal fade bd-example-modal-lg" id="stopped_defect_image_modal" tabindex="-1" role="dialog"
+    aria-hidden="true" style="margin-top: 2%">
+    <div class="modal-dialog modal-lg" role="document" style="width: 100%; min-width: 80%; margin: 20; padding: 0">
+      <div class="modal-content" style="
+            width: auto;
+            min-width: 80%;
+            border: 0 none;
+            border-radius: 0;
+            box-shadow: none;
+          ">
+        <!-- Modal heading -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">
+            Image of Defect that we Stopped for:
+          </h5>
+        </div>
+        <!-- Modal body with image -->
+        <div class="modal-body">
+          <div id="stop_defect_camera_names_container"></div>
+          <img class="modal-body" id="stopped_defect_image" src=""
+            style="width: 100%; height: 450px; border-radius: 35px" />
+          <div class="row">
+            <div class="col p-3">
+              <div class="card" style="padding: 10px">
+                <div id="stopped_defect_zoom_images" style="overflow-y: hidden; overflow-x: auto; display: flex">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Job Info. Modal form -->
+  <div class="modal fade" id="jobSettingsModal" tabindex="-1" aria-labelledby="jobSettingsModalLabel" aria-hidden="true"
+    data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content" style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); outline: none">
+        <div class="modal-header" style="background-color: #1c4e9b; color: white; font-weight: bold">
+          <h5 class="modal-title" id="settingsModalLabel" style="font-weight: bold">
+            Edit Job Info.
+          </h5>
+          <i class="fas fa-times" data-bs-dismiss="modal" aria-label="Close"
+            style="cursor: pointer; font-size: 25px"></i>
+        </div>
+        <div class="modal-body">
+          <!-- Input fields for each setting value -->
+          <div class="container">
+            <div class="col">
+              <div>
+                <!-- First section -->
+                <!-- <div class="d-flex justify-content-center align-items-center"> -->
+                <div class="p-3 border bg-light">
+                  <div class="row mt-2">
+                    <label class="col-sm-5 col-form-label job-info-form" for="roll_id">Roll ID</label>
+                    <div class="col-sm-7 align-items-center">
+                      <div class="input-container">
+                        <input type="text" class="form-control dark-input" id="roll_id" value="0" />
+                        <span class="close-icon" onclick="clearInput('roll_id')">
+                          <i class="far fa-times-circle"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-2">
+                    <label class="col-sm-5 col-form-label job-info-form" for="gsm">GSM</label>
+                    <div class="col-sm-7 align-items-center">
+                      <div class="input-container">
+                        <input type="number" class="form-control dark-input" id="gsm" min="0" max="100000" value="0" />
+                        <span class="close-icon" onclick="clearInput('gsm')">
+                          <i class="far fa-times-circle"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-2">
+                    <label class="col-sm-5 col-form-label job-info-form" for="offset">Offset(cm)</label>
+                    <div class="col-sm-7 align-items-center">
+                      <div class="input-container">
+                        <input type="number" class="form-control dark-input" id="offset" min="0" max="200" value="10" />
+                        <span class="close-icon" onclick="clearInput('offset')">
+                          <i class="far fa-times-circle"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-2">
+                    <label class="col-sm-5 col-form-label job-info-form" for="fabric_width">Fabric width (cm)</label>
+                    <div class="col-sm-7 align-items-center">
+                      <div class="input-container">
+                        <input type="number" class="form-control dark-input" id="fabric_width" min="0" max="1000"
+                          value="50" />
+                        <span class="close-icon" onclick="clearInput('fabric_width')">
+                          <i class="far fa-times-circle"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-2">
+                    <label class="col-sm-5 col-form-label job-info-form" for="roll_weight">Roll Weight (Kg)</label>
+                    <div class="col-sm-7 align-items-center">
+                      <div class="input-container">
+                        <input type="number" class="form-control dark-input" id="roll_weight" min="0" max="1000"
+                          value="50" />
+                        <span class="close-icon" onclick="clearInput('roll_weight')">
+                          <i class="far fa-times-circle"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="row mt-2">
+                    <label class="col-sm-5 col-form-label job-info-form" for="cut_length">Cut Length (cm)</label>
+                    <div class="col-sm-7 align-items-center">
+                      <div class="input-container">
+                        <input type="number" class="form-control dark-input" id="cut_length" min="0" max="600"
+                          value="50" />
+                        <span class="close-icon" onclick="clearInput('cut_length')">
+                          <i class="far fa-times-circle"></i>
+                        </span>
+                      </div>
+                      <select id="roll-index"></select>
+                    </div>
+                  </div> -->
+                  <div class="row mt-2 align-items-center">
+                    <label class="col-sm-5 col-form-label job-info-form" for="cut_length">Cut Length (cm)</label>
+                    <div class="col-sm-7 d-flex">
+
+                      <!-- Input field - 45% -->
+                      <div class="input-container position-relative me-2" style="flex: 0 0 45%;">
+                        <input type="number" class="form-control dark-input" id="cut_length" min="0" max="600"
+                          value="50" placeholder="Enter cut length..." />
+                        <span class="close-icon" onclick="clearInput('cut_length')"
+                          style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                          <i class="far fa-times-circle" style="font-size: 0.8rem;"></i>
+                        </span>
+                      </div>
+
+                      <!-- Select box - 55% -->
+                      <select id="cut-length-job-index" class="form-select" style="flex: 0 0 55%;">
+                        <option disabled selected>Select Work Order</option>
+                      </select>
+                    </div>
+                  </div>
+
+
+                  <div class="row mt-2">
+                    <label class="col-sm-5 col-form-label job-info-form" for="batchCount">Batch count</label>
+                    <div class="col-sm-7 align-items-center">
+                      <div class="input-container">
+                        <input type="number" class="form-control dark-input" id="batchCount" value="50" />
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="row mt-2">
+                    <label for="cutting_mode" class="col-sm-5 col-form-label job-info-form">Cutting Mode</label>
+                    <div class="col-sm-7 align-items-center">
+                      <div class="wrapper-cutting_mode" id="cutting_mode" style="padding-right: 1.25rem;">
+                        <input type="radio" name="cutting_mode_radio" id="semiauto" checked>
+                        <input type="radio" name="cutting_mode_radio" id="justcut">
+                        <input type="radio" name="cutting_mode_radio" id="autocut">
+                        <input type="radio" name="cutting_mode_radio" id="recut">
+                        <label for="semiauto" class="option-cutting_mode semiauto">
+                          <div class="dot-cutting_mode"></div>
+                          <span>SemiAuto</span>
+                        </label>
+                        <label for="justcut" class="option-cutting_mode justcut">
+                          <div class="dot-cutting_mode"></div>
+                          <span>JustCut</span>
+                        </label>
+
+                        <label for="autocut" class="option-cutting_mode autocut">
+                          <div class="dot-cutting_mode"></div>
+                          <span>AutoCut</span>
+                        </label>
+
+                        <label for="recut" class="option-cutting_mode recut">
+                          <div class="dot-cutting_mode"></div>
+                          <span>ReCut</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-2" id="secondary_cut_length_box" style="display: none">
+                    <label class="col-sm-5 col-form-label job-info-form" for="secondary_cut_length">Secondary Cut
+                      Length
+                      (cm)</label>
+                    <div class="col-sm-7 align-items-center">
+                      <div class="input-container">
+                        <input type="number" class="form-control dark-input" id="secondary_cut_length" min="0" max="600"
+                          value="50" />
+                        <span class="close-icon" onclick="clearInput('secondary_cut_length')">
+                          <i class="far fa-times-circle"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="row mt-2" id="tertiary_cut_length_box" style="display: none">
+                    <label class="col-sm-5 col-form-label job-info-form" for="tertiary_cut_length">Tertiary Cut Length
+                      (cm)</label>
+                    <div class="col-sm-7 align-items-center">
+                      <div class="input-container">
+                        <input type="number" class="form-control dark-input" id="tertiary_cut_length" min="0" max="600"
+                          value="50" />
+                        <span class="close-icon" onclick="clearInput('tertiary_cut_length')">
+                          <i class="far fa-times-circle"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="row mt-2">
+                    <label for="punching_status_label" class="col-sm-5 col-form-label job-info-form">Punch</label>
+                    <div class="col-sm-3 align-items-center d-flex">
+                      <div class="wrapper" id="punching_status">
+                        <input type="radio" name="punching_radio" id="punch_yes" checked>
+                        <input type="radio" name="punching_radio" id="punch_no">
+                        <label for="punch_yes" class="option punch_yes">
+                          <div class="dot"></div>
+                          <span>Yes</span>
+                        </label>
+                        <label for="punch_no" class="option punch_no">
+                          <div class="dot"></div>
+                          <span>No</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-3 align-items-center justify-content-end" id="top_bottom_panel_dev">
+                      <div class="row align-items-center">
+                        <div class="col-sm-8 text-center">
+                          Top/Bottom
+                        </div>
+                        <div class="col-sm-4 text-center">
+                          <div class="toggle-btn align-items-center">
+                            <input type="checkbox" class="cb-value" id="top_bottom_panel_selected" />
+                            <span class="round-btn"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-sm-4 align-items-center justify-content-end"  id="top_bottom_panel_selected1">
+                      <span class="col-sm-5">Top/Bottom</span>
+                       <div class="col-sm-5 align-items-center">Top/Bottom</div>
+                      <div class="toggle-btn align-items-center">
+                        <input type="checkbox"  class="cb-value" id="top_bottom_panel_selected" />
+                        <span class="round-btn"></span>
+                      </div>
+                      
+                    </div> -->
+                    <div class="row mt-2">
+                      <label for="recipes" class="col-sm-5 col-form-label job-info-form">Recipe</label>
+                      <div class="col-sm-7 align-items-center" style="padding-left: 1.25rem;">
+                        <select class="form-select dark-input" id="recipes"></select>
+                      </div>
+                    </div>
+
+
+
+                    <div class="row mt-2">
+                      <label for="layer" class="col-sm-5 col-form-label job-info-form">Fabric Type</label>
+                      <div class="col-sm-7 align-items-center" style="padding-left: 1.25rem;">
+                        <select class="form-select dark-input" id="layer">
+                          <option value="Single" selected>Single layer</option>
+                          <option value="Double">Double layer</option>
+                        </select>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- </div> -->
+                </div>
+
+              </div>
+              <div style="padding-top: 0.5rem;">
+                <!-- Second section -->
+                <div class="p-3 border bg-light ">
+                  <div class="row mt-2">
+                    <label class="col-sm-5 col-form-label job-info-form" for="roll_meter">Roll Length (m)</label>
+                    <div class="col-sm-7 align-items-center">
+                      <div class="input-container">
+                        <input type="number" class="form-control dark-input" id="roll_meter" value="0" />
+                        <span class="close-icon" onclick="clearInput('roll_meter')">
+                          <i class="far fa-times-circle"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-2">
+                    <label class="col-sm-5 col-form-label job-info-form" for="loom_num">Loom No</label>
+                    <div class="col-sm-7 align-items-center">
+                      <div class="input-container">
+                        <input type="text" class="form-control dark-input" id="loom_num" min="0" max="100000"
+                          value="0" />
+                        <span class="close-icon" onclick="clearInput('loom_num')">
+                          <i class="far fa-times-circle"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-sm-12">
+                  <button class="btn btn-primary star roll_toggle" type="button" style="
+                        background: #4d8ceb;
+                        padding: 15px;
+                        font-size: 20px;
+                        font-family: Roboto, sans-serif;
+                        box-shadow: 0px 3px 6px 2px #00000029;
+                        color: #ffffff;
+                        width: 100%;
+                        font-weight: bold;
+                      ">
+                    Start
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Systems Health Diagnostics Modal -->
+  <div class="modal fade" id="SystemHealthModal" tabindex="-1" aria-labelledby="SystemHealthModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content" style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1)">
+        <div class="modal-header" style="background-color: #1c4e9b; color: white; font-weight: bold">
+          <h5 class="modal-title" id="settingsModalLabel">
+            System Diagnostics
+          </h5>
+          <i class="fas fa-times" data-bs-dismiss="modal" aria-label="Close"
+            style="cursor: pointer; font-size: 25px"></i>
+        </div>
+        <div class="modal-body">
+          <!-- Detailed Diagnostics View of each settings -->
+          <div class="row">
+            <div class="col-6">
+              <!-- Widget for Processing (Camera) -->
+              <fieldset style="padding: 10px">
+                <legend>
+                  <h5 class="card-title">Processing (Camera)</h5>
+                </legend>
+
+                <div class="custom-card">
+                  <div class="custom-card-header bg-primary text-white">
+                    <h6 class="custom-card-title p-2" style="font-weight: bold">
+                      <i class="fas fa-camera-retro"></i>
+                      Cameras Config
+                    </h6>
+                  </div>
+                  <div class="custom-card-body">
+                    <div class="row">
+                      <div class="col-2">
+                        <i class="fa fa-camera fa-2x"></i>
+                      </div>
+                      <div class="col">
+                        <div id="camera_container"></div>
+                      </div>
+                    </div>
+
+                    <div class="row mt-2">
+                      <div class="col-2">
+                        <i class="fa fa-cogs fa-2x"></i>
+                      </div>
+                      <div class="">
+                        <div class="main_processed_image">
+                          Main:
+                          <span class="main_processed_images" style="color: #707070">NA</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mt-2">
+                      <div class="col-2">
+                        <i class="fas fa-eye fa-2x"></i>
+                      </div>
+                      <div class="col">
+                        <div id="camera_infer_container"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="col-6">
+              <!-- Widget for Processing (PLC) -->
+              <fieldset style="padding: 10px">
+                <legend>
+                  <h5 class="card-title">PLC</h5>
+                </legend>
+
+                <div class="custom-card">
+                  <div class="custom-card-header bg-primary text-white">
+                    <h6 class="custom-card-title p-2" style="font-weight: bold">
+                      <i class="fas fa-check-double"></i>
+                      PLC Config
+                    </h6>
+                  </div>
+                  <div class="custom-card-body"></div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+
+          <!-- Widget for Distance (Sensors) -->
+          <fieldset style="padding: 10px">
+            <legend>
+              <h5 class="card-title">Distance (Sensors)</h5>
+            </legend>
+            <div class="row">
+              <!-- Dancer Sensors -->
+              <div class="col-md-6">
+                <div class="custom-card">
+                  <div class="custom-card-header bg-primary text-white">
+                    <h6 class="custom-card-title p-2" style="font-weight: bold">
+                      <i class="fas fa-microchip"></i>
+                      Dancer Sensors
+                    </h6>
+                  </div>
+                  <div class="custom-card-body">
+                    <div class="custom-card-content">
+                      Loop Close:<br />
+                      <span class="ms-3">Time:
+                        <span id="last_loop_close_time" style="color: #707070">NA</span></span><br />
+                      <span class="ms-3">Cam Fabric(mm):
+                        <span id="last_cam_mm" style="color: #707070">NA</span></span><br />
+                      <span class="ms-3">Cutter Fabric(mm):
+                        <span id="last_cutter_mm" style="color: #707070">NA</span></span><br />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cutter Sensors -->
+              <div class="col-md-6">
+                <div class="custom-card">
+                  <div class="custom-card-header bg-primary text-white">
+                    <h6 class="custom-card-title p-2" style="font-weight: bold">
+                      <i class="fas fa-microchip"></i>
+                      Cutter Sensors
+                    </h6>
+                  </div>
+                  <div class="custom-card-body">
+                    <div class="custom-card-content" style="padding: 0px 5px">
+                      Current: Body(<span id="current_body_mm" style="color: #707070">NA</span>
+                      mm)<br />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Widget for Encoders -->
+          <fieldset style="padding: 10px">
+            <legend>
+              <h5 class="card-title">Encoders</h5>
+            </legend>
+            <div class="row">
+              <!-- Internet -->
+              <div class="col-md-4">
+                <div class="custom-card">
+                  <div class="custom-card-header bg-primary text-white">
+                    <h6 class="custom-card-title p-2" style="font-weight: bold">
+                      <i class="fas fa-history"></i>
+                      Front Encoder
+                    </h6>
+                  </div>
+                  <div class="custom-card-body">
+                    <span class="ms-3">Cutter Fabric(mm):
+                      <span id="current_cutter_mm" style="color: #707070">NA</span></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DataBase -->
+              <div class="col-md-4">
+                <div class="custom-card">
+                  <div class="custom-card-header bg-primary text-white">
+                    <h6 class="custom-card-title p-2" style="font-weight: bold">
+                      <i class="fas fa-history"></i>
+                      Back Encoder
+                    </h6>
+                  </div>
+                  <div class="custom-card-body">
+                    <span class="ms-3">Cam Fabric(mm):
+                      <span id="current_cam_mm" style="color: #707070">NA</span></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="custom-card">
+                  <div class="custom-card-header bg-primary text-white">
+                    <h6 class="custom-card-title p-2" style="font-weight: bold">
+                      <i class="fas fa-sync"></i>
+                      SYNC
+                    </h6>
+                  </div>
+                  <div class="custom-card-body">
+                    Loop Close Value(mm):
+                    <span class="ms-3" id="last_loop_close_value" style="color: #707070">NA</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Widget for Internet and Database -->
+          <fieldset style="padding: 10px">
+            <legend>
+              <h5 class="card-title">Servers</h5>
+            </legend>
+            <div class="row">
+              <!-- Internet -->
+              <div class="col-md-6">
+                <div class="custom-card">
+                  <div class="custom-card-header bg-primary text-white">
+                    <h6 class="custom-card-title p-2" style="font-weight: bold">
+                      <i class="fab fa-internet-explorer"></i>
+                      Internet
+                    </h6>
+                  </div>
+                  <div class="custom-card-body">
+                    <p>Status: Connected</p>
+                    <p>Speed: 100 Mbps</p>
+                    <p>ISP: ABC Internet</p>
+                    <p>Latency: 50 ms</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DataBase -->
+              <div class="col-md-6">
+                <div class="custom-card">
+                  <div class="custom-card-header bg-primary text-white">
+                    <h6 class="custom-card-title p-2" style="font-weight: bold">
+                      <i class="fas fa-globe"></i>
+                      DataBase
+                    </h6>
+                  </div>
+                  <div class="custom-card-body">
+                    <p>Status: Running</p>
+                    <p>Version: Sqlite 8.0</p>
+                    <p>Connections: 100</p>
+                    <p>Backup: Last performed on January 15, 2024</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The previous defect image Modal -->
+  <div id="previous_defect_image_modal" class="modal previous_defect_modal">
+    <!-- <span class="close">&times;</span> -->
+    <img class="modal-content previous_defect_modal_content" id="previous_defect_image" />
+    <div id="caption"></div>
+    <div class="modal-footer justify-content-between" style="border: none">
+      <button type="button" class="btn btn-primary" id="close_previous_defect_modal" style="
+            margin-left: 48%;
+            width: 55px;
+            height: auto;
+            margin-top: -100px;
+            font-size: large;
+            border-radius: 25px;
+          ">
+        X
+      </button>
+      <button class="btn btn-primary d-none d-sm-inline-block" id="btn_false_positive" type="button" style="
+            background: #fff6f8;
+            /* padding: 10px; */
+            font-size: 12px;
+            font-family: Roboto, sans-serif;
+            box-shadow: 0px 3px 6px 2px #00000029;
+            border: 1px solid #1c4e9b;
+            margin: 5px 15px;
+            width: 50%;
+            margin-left: 25%;
+          " value="">
+        <a class="navbar-brand d-flex align-items-center sidebar-brand m-0" href="#" style="padding: 0px">
+          <div class="sidebar-brand-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="sidebar-brand-text mx-3">
+            <span style="color: #1c4e9b">False Positive</span>
+          </div>
+        </a>
+      </button>
+    </div>
+  </div>
+
+  <!-- Data Collection Modal -->
+  <!-- <div class="modal fade" id="data_collection_modal" tabindex="-1" role="dialog" aria-labelledby="data-coll-modal"
+      aria-hidden="true" data-bs-backdrop="static">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="data-coll-modal">
+              Data Collection Settings
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="data_collection_upload"
+                  style="padding: 30px; padding-bottom: 5px; width: 100%">
+                  <i class="fas fa-file-upload fa-7x"></i>
+                  <p class="mt-4 h4">Upload To Cloud</p>
+                </button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="data_collection_clear"
+                  style="padding: 30px; padding-bottom: 5px; width: 100%">
+                  <i class="fas fa-file-excel fa-7x"></i>
+                  <p class="mt-4 h4">Clear Data</p>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  <!-- <div class="modal fade" id="recipe_table_modal" aria-hidden="true"
+    aria-labelledby="recipe_table_modalToggleLabel" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="recipe_table_modalToggleLabel">
+            Authorize user
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-3">
+            <label for="dev_setting_password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="recipe_table_password" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-dismiss="modal" id="recipe_table_modal_btn">
+            Redirect To Recipe
+          </button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="modal fade" id="user_access_modal" aria-hidden="true" aria-labelledby="threshold_value_modalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="threshold_value_modalToggleLabel">
+            Authorize user
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-3">
+            <label for="dev_setting_password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="admin_password" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-dismiss="modal" id="access_level_btn">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="devSettingPasswordModalToggle" aria-hidden="true"
+    aria-labelledby="devSettingPasswordModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="devSettingPasswordModalToggleLabel">
+            Authorize user
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-3">
+            <label for="dev_setting_password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="dev_setting_password" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-dismiss="modal" id="open_dev_setting_btn">
+            Open Dev Settings
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="devSettingsModal" aria-hidden="true" aria-labelledby="devSettingsModalLabel"
+    tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="devSettingsModalLabel">
+            Dev Settings Modal
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label>Pixel Per MM </label>
+          <input type="number" class="form-control" id="pixel_per_mm" min="0" max="100" value="8.2" class="slider" />
+          <label>Pulse Per MM </label>
+          <input type="number" class="form-control" id="pulse_per_mm" min="0" max="100" value="8.2" class="slider" />
+          <button class="btn btn-primary mt-3" id="btn_check_punch_block" type="button" style="
+                background: #e4e4e4;
+                padding: 10px;
+                font-size: 16px;
+                box-shadow: 0px 3px 6px 2px #00000029;
+                border: 1px solid #1c4e9b;
+                margin: 5px;
+                width: 100%;
+              ">
+            <span style="color: #1c4e9b">Check Punch Block</span>
+          </button>
+          <button class="btn btn-primary mt-3" id="btn_check_machine_stop" type="button" style="
+                background: #e4e4e4;
+                padding: 10px;
+                font-size: 16px;
+                box-shadow: 0px 3px 6px 2px #00000029;
+                border: 1px solid #1c4e9b;
+                margin: 5px;
+                width: 100%;
+              ">
+            <span style="color: #1c4e9b">Check Machine Stop</span>
+          </button>
+          <button class="btn btn-primary mt-3" id="btn_check_buzzer" type="button" style="
+                background: #e4e4e4;
+                padding: 10px;
+                font-size: 16px;
+                box-shadow: 0px 3px 6px 2px #00000029;
+                border: 1px solid #1c4e9b;
+                margin: 5px;
+                width: 100%;
+              ">
+            <span style="color: #1c4e9b">Check Buzzer</span>
+          </button>
+          <input class="form-check-input" type="checkbox" id="frame_based_stopping_logic" /><label
+            class="form-check-label" for="formCheck-1" style="
+                color: rgb(0, 0, 0);
+                font-size: 14px;
+                font-family: Roboto, sans-serif;
+              ">
+            Frame Based Stopping Logic</label>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-dismiss="modal">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- barcode_modal -->
+  <div class="modal fade" id="barcode_modal" aria-hidden="true" aria-labelledby="barcode_modal_toggle" tabindex="-1">
+    <div class="modal-dialog" id="barcode-dialog">
+      <div class="modal-content" id="barcode-content">
+        <!-- Close Button -->
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"
+          style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem; background: none; border: none; cursor: pointer;">
+          &times;
+        </button>
+        <!-- Add space after the button -->
+        <div style="margin-top: 20px;"></div>
+
+        <div class="barcode-group">
+          <button id="open_barcode_modal">
+            <img src="./assets/img/barcode.jpg" width="55rem" height="55rem" />
+          </button>
+          <input type="text" id="barcode-input" placeholder="Scanned Barcode">
+          <button id="barcode-done-button" class="done-icon click-effect">
+            <i class="fa fa-check-circle" style="font-size: 1rem; color: rgb(0, 60, 128); margin-left: 10px;"></i>
+            <span style="font-size: 0.9rem; color: rgb(0, 60, 128); margin-left: 0px;">Submit</span>
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label for="parsing-type">Delimiter</label>
+          <select id="parsing-type">
+            <option value=":">:</option>
+            <option value="/">/</option>
+            <option value="_">_</option>
+            <option value="#">#</option>
+            <option value="|">|</option>
+            <option value=";">;</option>
+          </select>
+        </div>
+
+        <!-- Rest of the fields -->
+        <div class="values" style="margin-top: 15px;">
+          <div>
+            <label for="roll-id"> <span style="color: red">*</span>Roll ID</label>
+            <input type="text" id="roll-value" placeholder="Value" disabled>
+            <select id="roll-index"></select>
+          </div>
+          <div>
+            <label for="loom-no">Loom No</label>
+            <input type="text" id="loom-value" placeholder="Value" disabled>
+            <select id="loom-index"></select>
+          </div>
+          <div>
+            <label for="width">Width</label>
+            <input type="text" id="width-value" placeholder="Value" disabled>
+            <select id="width-index"></select>
+          </div>
+          <div>
+            <label for="gsm">GSM</label>
+            <input type="text" id="gsm-value" placeholder="Value" disabled>
+            <select id="gsm-index"></select>
+          </div>
+          <div>
+            <label for="rollweight">Roll Weight</label>
+            <input type="text" id="roll-weight-value" placeholder="Value" disabled>
+            <select id="roll-weight-index"></select>
+          </div>
+          <div>
+            <label for="roll-length">Roll Length</label>
+            <input type="text" id="roll-length-value" placeholder="Value" disabled>
+            <select id="roll-length-index"></select>
+          </div>
+        </div>
+        <div class="SetBtn">
+          <button class="btn" id="set-config">Set</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="scan_barcode_modal" aria-hidden="true" aria-labelledby="barcode_value_modalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header d-flex align-items-center justify-content-between">
+          <h5 class="modal-title">Scan Barcode</h5>
+          <i type="button" class="fa fa-times text-white fs-4" data-bs-dismiss="modal" aria-label="Close"></i>
+        </div>
+
+        <div class="modal-body">
+          <div class="row mb-3">
+            <!-- <label for="barcode_modal_label" class="col-sm-2 col-form-label">Barcode</label> -->
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="scan_barcode_input" placeholder="Enter barcode" />
+            </div>
+            <!-- Button -->
+            <!-- <div class="col-sm-3">
+        <button class="btn btn-primary" data-bs-dismiss="modal" id="barcode_submit1">
+          Scan
+        </button>
+      </div> -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-dismiss="modal" id="barcode_submit">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Work Order Modal -->
+  <div class="modal fade" id="workorder_Modal" tabindex="-1" aria-labelledby="workOrderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content border rounded-3">
+        <div class="modal-header justify-content-center position-relative">
+          <h5 class="modal-title">Work Order</h5>
+          <button type="button" class="position-absolute end-0 me-3"
+            style="font-weight: bolder; font-size: 2.9rem; filter: invert(1); border: none; background: none;"
+            data-bs-dismiss="modal" aria-label="Close">&times;</button>
+        </div>
+
+        <div class="modal-body px-4">
+          <!-- Tabs -->
+          <ul class="nav nav-tabs mb-3 w-100" id="workOrderTabs" role="tablist">
+            <li class="nav-item w-50" role="presentation">
+              <button class="nav-link active fw-bold w-100" id="create-tab" data-bs-toggle="tab"
+                data-bs-target="#create" type="button" role="tab">
+                Create work order
+              </button>
+            </li>
+            <li class="nav-item w-50" role="presentation">
+              <button class="nav-link fw-bold w-100" id="complete-tab" data-bs-toggle="tab" data-bs-target="#complete"
+                type="button" role="tab">
+                Complete work order
+              </button>
+            </li>
+          </ul>
+
+
+          <div class="tab-content" id="workOrderTabContent">
+            <!-- Create Work Order -->
+            <div class="tab-pane fade show active" id="create" role="tabpanel">
+              <form id="createWorkOrderForm">
+                <div class="mb-3">
+                  <label class="form-label">Name</label>
+                  <input type="text" class="form-control" id="orderName" placeholder="Work-order-name">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Target Pcs</label>
+                  <input type="number" class="form-control" id="target" placeholder="Target" min="1">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Cut length (cm)</label>
+                  <input type="number" class="form-control" id="cutLength" placeholder="Cut-length" min="1">
+                </div>
+
+                <div class="SumbitBtn text-center">
+                  <button class="btn" id="sumbit-work-order">Create</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Complete Work Order -->
+            <div class="tab-pane fade" id="complete" role="tabpanel">
+              <form id="completeWorkOrderForm">
+                <div class="mb-3">
+                  <label class="form-label">Work Order</label>
+                  <select class="form-select" id="selectWorkOrder">
+                    <option selected disabled>Select work order</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Target Pcs</label>
+                  <input type="text" class="form-control" id="completeTarget" readonly placeholder="Auto-filled">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Current Pcs</label>
+                  <input type="text" class="form-control" id="currectpcs" readonly placeholder="Auto-filled">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Cut length (cm)</label>
+                  <input type="text" class="form-control" id="completeLength" readonly placeholder="Auto-filled">
+                </div>
+
+                <div class="SumbitBtn text-center">
+                  <button class="btn" id="complete-work-order">Complete</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Collection Modal -->
+  <div class="modal fade" id="systemLoaderModal" tabindex="-1" aria-labelledby="systemLoaderModalLabel"
+    aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="systemLoaderModalLabel" style="font-size: 30px; font-weight: bolder">
+            Initializing....
+          </h5>
+        </div>
+        <div class="modal-body" style="text-align: center; padding: 100px; font-size: 40px">
+          <div class="spinner-border text-primary" style="width: 10rem; height: 10rem" role="status">
+            <span class="visually-hidden">Loading. Please wait.</span>
+          </div>
+          <div id="dynamicMessage">Loading. Please wait.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="testAiCuttingModal" tabindex="-1" aria-labelledby="jobSettingsModalLabel"
+    aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content" style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); outline: none">
+        <div class="modal-header" style="background-color: #1c4e9b; color: white; font-weight: bold">
+          <h5 class="modal-title" id="testAiModalLabel" style="font-weight: bold">
+            Test Ai-CutMaster Integrations
+          </h5>
+          <i class="fas fa-times" data-bs-dismiss="modal" aria-label="Close"
+            style="cursor: pointer; font-size: 25px"></i>
+        </div>
+
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-7">
+                <!-- First section -->
+                <div class="d-flex justify-content-center align-items-center">
+                  <div class="p-3 border bg-light">
+                    <div class="row mt-3 text-center connection-details">
+                      <div class="col-sm-13 text-center">
+                        <h4><b>Connection Details</b></h4>
+                        <div style="height: 17rem;overflow: auto; width: 23rem;">
+                          <label style="font-size: 14px; font-weight: bold;"
+                            id="connection_details">Loading.....</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mt-3">
+                      <label style="font-size: 16px; font-weight: bold;" for="cutting_length">Cut Length (mm) (Number
+                        50
+                        to 10000)</label>
+                      <div class="col-sm-7 align-items-center">
+                        <div class="input-container">
+                          <input type="number" class="form-control dark-input" id="cutting_length" min="1" max="10000"
+                            value="0" />
+                          <span class="close-icon" onclick="clearInput('cutting_length')">
+                            <i class="far fa-times-circle"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-sm-5">
+                        <button class="col-form-label button-17" id="cut_length_btn" style="height: 40px;"><b>Write
+                            Cut
+                            Length</b></button>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-5">
+                <!-- Second section -->
+                <div class="p-3 border bg-light " style="height: 28rem;">
+                  <div style="padding-left: 2.3rem;">
+                    <div class="row mt-3 d-flex align-items-center">
+                      <i class="fas fa-solid fa-circle"
+                        style="font-size: 2.3rem; padding-left: 5rem;padding-bottom: 0.5rem;color: red;"
+                        id="connection_status"></i>
+
+                    </div>
+
+                    <div class="row mt-2 d-flex align-items-center" style="padding-left: 0.5rem;">
+                      <span><b>Connection Status</b></span>
+                    </div>
+                  </div>
+                  <div style="padding-left: 2.3rem;padding-top: 2.75rem;">
+                    <div class="row mt-3 d-flex align-items-center">
+                      <i class="fas fa-solid fa-circle"
+                        style="font-size: 2.3rem; padding-left: 5rem;padding-bottom: 0.5rem;color: red;"
+                        id="machine_ready"></i>
+                    </div>
+
+                    <div class="row mt-2 d-flex align-items-center">
+                      <span><b>Machine Ready Status</b></span>
+                    </div>
+                  </div>
+                  <div class="row mt-3 text-center">
+                    <div class="col-sm-13" style="padding-top: 4rem;">
+                      <button class="col-form-label button-17" id="send_cycle_start"><b>Send Cycle Start</b></button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+<script type="text/javascript" src="assets/notification/awesome_notification.js"></script>
+<script type="text/javascript" src="assets/js/popper.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/chart.min.js"></script>
+<script src="assets/js/bs-init.js"></script>
+<script src="assets/js/theme.js"></script>
+<script type="text/javascript" src="assets/sweet_alert/sweet_alert.js"></script>
+<script src="assets/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    for (var i = 10; i <= 200; i++) {
+      $("#val_exposure").append(`<option value="${i}">${i}</option>`);
+    }
+    function clearInput(inputId) {
+      $("#" + inputId).val("");
+    }
+
+    function clearInput(inputId) {
+      var inputField = $("#" + inputId);
+
+      // Check if the input field is not disabled before clearing its value
+      if (!inputField.prop("disabled")) {
+        inputField.val("");
+      }
+    }
+
+    // Event listener for icon click
+    $(".close-icon").on("click", function () {
+      // Get the input field id from the data attribute
+      var inputId = $(this).siblings("input").attr("id");
+
+      clearInput(inputId);
+    });
+
+    function startTime() {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      let mon = today.getMonth() + 1; // Months start at 0!
+      let dd = today.getDate();
+      let hh = today.getHours();
+      let mm = today.getMinutes();
+      let ss = today.getSeconds();
+
+      if (dd < 10) dd = "0" + dd;
+      if (mon < 10) mon = "0" + mon;
+      if (hh < 10) hh = "0" + hh;
+      if (mm < 10) mm = "0" + mm;
+      if (ss < 10) ss = "0" + ss;
+
+      $("#current_time").html(
+        dd + "/" + mon + "/" + yyyy + " " + hh + ":" + mm + ":" + ss
+      );
+      $("#copyright_year").html(yyyy);
+      setTimeout(startTime, 1000);
+    }
+    startTime();
+    $("#open_dev_setting_btn").click(() => {
+      var password = "Robro@123";
+      if ($("#dev_setting_password").val() === password) {
+        var dev_setting_modal = new bootstrap.Modal($("#devSettingsModal"), {
+          keyboard: false,
+        });
+        dev_setting_modal.show();
+        new AWN()["success"]("User Authorized Successfully.");
+      } else {
+        new AWN()["alert"]("Unauthorized User.");
+      }
+    });
+  });
+</script>
+<script type="text/javascript" src="assets/js/event.min.js"></script>
+<script type="text/javascript" src="assets/js/roslib.min.js"></script>
+<script type="text/javascript" src="assets/js/multi_defect_ros_bridge.js"></script>
+<script type="text/javascript" src="assets/js/tabulator.min.js"></script>
+
+</html>

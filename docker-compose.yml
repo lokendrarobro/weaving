@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mohanrobro/yolov8:mysql
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /home/robro/catkin_ws/mysql/database/:/var/lib/mysql/
+    ports:
+      - "3306:3306"
+    network_mode: "host"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+  
+  # kwis_fibc:
+  #   image: mohanrobro/yolov8:fibc_v3.3.0
+
+  #   build: .
+
+  #   privileged: true
+
+  #   network_mode: "host"
+
+  #   shm_size: 10GB
+
+  #   runtime: nvidia
+
+  #   environment:
+  #     - NVIDIA_DRIVER_CAPABILITIES=all
+  #     - DISPLAY
+  #     - QT_X11_NO_MITSHM=1
+  #   volumes:
+  #     - "/tmp/.X11-unix:/tmp/.X11-unix:rw"
+  #     - "/etc/localtime:/etc/localtime:ro"
+  #     - "/home/mohan/catkin_ws/ai_data/:/images/"
+  #     - "/home/mohan/catkin_ws/kvp_platform/kwis_fibc_default.launch:/home/Eve/catkin_ws/install/share/weaving_inspection/launch/kwis_fibc_default.launch"
+  #     - "/home/mohan/catkin_ws/kvp_platform/kwis_fibc_default.json:/home/Eve/catkin_ws/install/share/weaving_inspection/config/kwis_fibc_default.json"
+  #     - "/home/mohan/catkin_ws/kvp_platform/launch_kwis_fibc.sh:/home/Eve/catkin_ws/launch_kwis_fibc.sh"
+  #   devices:
+  #     - "/dev/ttyUSB1:/dev/ttyUSB1"
+  #     - "/dev/ttyUSB0:/dev/ttyUSB0"
+
+  #   command: /bin/bash -c "/home/Eve/catkin_ws/launch_kwis_fibc.sh"
+
+  #   depends_on:
+  #     mysql:
+  #       condition: service_healthy
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu] # Enable GPU support (if applicable)

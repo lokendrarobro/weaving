@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,
+            shrink-to-fit=no"
+    />
+    <title>KWIS 1200 - Robro Systems</title>
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="assets/css/screen_size.css" />
+  <link rel="stylesheet" href="assets/notification/awesome_notification.css" />
+    <link href="assets/jsoneditor/jsoneditor.min.css" rel="stylesheet" />
+  </head>
+
+  <body id="page-top" style="background: rgb(237, 219, 219)">
+    <div id="wrapper">
+      <nav
+        class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 toggled"
+        style="background: #1c4e9b; font-family: Roboto, sans-serif"
+      >
+        <div class="container-fluid d-flex flex-column p-0">
+          <a
+            class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
+            href="#"
+          >
+            <div class="sidebar-brand-icon mt-2">
+              <img src="assets/img/logo_abbri.png" />
+            </div>
+            <div class="sidebar-brand-text">
+              <img src="assets/img/logo.png" />
+            </div>
+          </a>
+          <ul id="accordionSidebar" class="navbar-nav text-light">
+            <li class="nav-item">
+              <div
+                class="accordion"
+                role="tablist"
+                id="accordion-1"
+                style="margin: 100px 0px; border-style: none"
+              >
+                <div
+                  id="parameter_item"
+                  class="accordion-item"
+                  style="background: #1c4e9b; border-style: none"
+                >
+                  <h2 class="accordion-header" role="tab">
+                    <button
+                      class="accordion-button collapsed d-inline"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordion-1 .item-1"
+                      aria-expanded="false"
+                      aria-controls="accordion-1 .item-1"
+                      style="padding: 0px; background: #1c4e9b"
+                    >
+                      <a
+                        id="parameter_navbar"
+                        class="navbar-brand d-flex justify-content-center align-items-center justify-content-xxl-start sidebar-brand m-0"
+                        href="/"
+                        style="
+                          background: transparent;
+                          border-style: none;
+                          border-bottom-width: 1px;
+                          border-bottom-style: solid;
+                        "
+                      >
+                        <i
+                          class="fas fa-search-plus"
+                          style="font-size: 1.3rem"
+                        ></i>
+                        <div class="sidebar-brand-text mx-3">
+                          <span
+                            class="text-capitalize"
+                            style="
+                              font-size: 18px;
+                              font-family: Roboto, sans-serif;
+                            "
+                            >Inspection</span
+                          >
+                        </div>
+                      </a>
+                    </button>
+                  </h2>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="text-center d-none d-md-inline">
+            <button
+              class="btn rounded-circle border-0"
+              id="sidebarToggle"
+              type="button"
+            ></button>
+          </div>
+        </div>
+      </nav>
+      <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content" style="background: #e4e4e4">
+          <nav
+            class="navbar navbar-light navbar-expand bg-white shadow-none mb-4 topbar static-top"
+            style="background: linear-gradient(#e4e4e4, #e4e4e4), #e4e4e4"
+          >
+            <div class="container-fluid">
+              <button
+                class="btn btn-link d-md-none rounded-circle me-3"
+                id="sidebarToggleTop"
+                type="button"
+              >
+                <i class="fas fa-bars"></i>
+              </button>
+              <h1
+                style="
+                  font-size: 24px;
+                  font-family: Roboto;
+                  text-align: left;
+                  color: #707070;
+                  font-weight: bold;
+                "
+              >
+              KWIS v<span id="version">0.0.0</span>
+              </h1>
+              <div class="d-inline-flex align-items-xxl-center">
+                <h1
+                  id="current_time"
+                  style="
+                    margin: 0px 10px;
+                    font-size: 24px;
+                    color: #707070;
+                    font-weight: bold;
+                  "
+                ></h1>
+                <div class="mx-2" id="refreshButton">
+                  <i class="fas fa-sync-alt fa-2x" style="color: #1c4e9b"></i>
+                </div>
+                <div
+                  class="mx-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                >
+                  <i class="fas fa-power-off fa-2x" style="color: #1c4e9b"></i>
+                </div>
+                <div
+                  class="modal fade"
+                  id="staticBackdrop"
+                  data-bs-backdrop="static"
+                  data-bs-keyboard="false"
+                  tabindex="-1"
+                  aria-labelledby="staticBackdropLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">
+                          Shutdown
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">Do you really want to exit?</div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          No
+                        </button>
+                        <button
+                          type="button"
+                          id="shutdown"
+                          class="btn btn-primary"
+                        >
+                          Yes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <div class="container-fluid" style="text-align: right">
+            <button
+              id="json_save_btn"
+              type="button"
+              class="btn btn-primary px-5 py-2 my-4"
+            >
+              SAVE
+            </button>
+            <div id="json_editor_container" style="height: 600px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="assets/js/jquery-3.5.1.min.js"></script>
+  <script src="assets/jsoneditor/jsoneditor.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/chart.min.js"></script>
+  <script src="assets/js/bs-init.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      function startTime() {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        let mon = today.getMonth() + 1; // Months start at 0!
+        let dd = today.getDate();
+        let hh = today.getHours();
+        let mm = today.getMinutes();
+        let ss = today.getSeconds();
+
+        if (dd < 10) dd = "0" + dd;
+        if (mon < 10) mon = "0" + mon;
+        if (hh < 10) hh = "0" + hh;
+        if (mm < 10) mm = "0" + mm;
+        if (ss < 10) ss = "0" + ss;
+
+        $("#current_time").html(
+          dd + "/" + mon + "/" + yyyy + " " + hh + ":" + mm + ":" + ss
+        );
+        $("#copyright_year").html(yyyy);
+        setTimeout(startTime, 1000);
+      }
+      startTime();
+    });
+  </script>
+  <script type="text/javascript" src="assets/js/event.min.js"></script>
+  <script type="text/javascript" src="assets/js/roslib.min.js"></script>
+  <script
+    type="text/javascript"
+    src="assets/notification/awesome_notification.js"
+  ></script>
+  <script src="assets/js/jsoneditor.min.js"></script>
+  <script src="assets/js/jsoneditor_ros_bridge.js"></script>
+</html>
